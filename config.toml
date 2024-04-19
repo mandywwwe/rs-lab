@@ -28,8 +28,12 @@ any other possible actions...
 \"\"\"
 
 - Try your best to follow the round CONTEXT, RULES and TRIGGERS.
-- The round will END when ROUND RULES are met, you should summerize the round in the ENDING message like this:\"\"\"
-some context of the ending...
+- If the round is the FINAL round, you should summerize the round the whole story in the round ending like this:\"\"\"
+some context of the whole story based on all previous rounds' memories...
+ending summary: the summary of the whole story...
+\"\"\"
+- Otherwise, you should end the round with the ENDING message like this:\"\"\"
+some context of the round...
 round summary: the summary of the round...
 \"\"\"
 """
@@ -118,7 +122,7 @@ Here are the TRIGGERS of the round:
 Here are the RULES of the round:
 \"\"\"
 - The round will END in 5 TURNS or player leave the basement of the mansion.
-- When the round ends, PLAYER should met a old woman in the exit of the basement.
+- This is the final round, when the round ends, PLAYER should met a old woman in the exit of the basement.
 \"\"\"
 """
 [[rounds.messages]] # initial message to start the round
@@ -134,7 +138,7 @@ possible actions:
 
 # the extra informations for the game and message templates
 [meta]
-game_name="Call of Calthulhu"
+game_name="Call of Cthulhu"
 
 # character sheet infomations
 [meta.character]
