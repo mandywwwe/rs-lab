@@ -32,8 +32,7 @@ Some normal situations...
 2. 2nd action description...
 ...
 \"\"\"
-- Current round will be ended when "ending_conditions" are met.
-- When round is ending, the game master will summarize the whole round in the following format: 
+- Current round will be ended when "ending_conditions" are met, and the game master will summarize the whole round in the following format without any other responses:
 \"\"\"
 ### ENDING:
 current round ending summary...
@@ -110,6 +109,6 @@ triggers=[
     "When you enter the dining room, you will see a scary dog running through the room.",
 ]
 rules=[
-    "The round will end when PLAYER take 5 or more actions, no matter what the ending conditions are met or not.",
+    "The round will end when PLAYER take 3 or more actions, no matter what the ending conditions are met or not.",
     "When the round ends, PLAYER should heard a scary sound from the basement of the mansion.",
 ]
