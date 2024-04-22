@@ -42,7 +42,7 @@ round summary: the summary of the round...
 [[rounds]]
 name="The Haunted Mansion"
 [[rounds.messages]] # system message which provides the round context
-role="system"
+role="assistant"
 content="""
 Here is the player's CHARACTER SHEET:
 \"\"\"
