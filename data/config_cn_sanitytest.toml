@@ -61,6 +61,35 @@ possible actions:
 """
 
 # the second round infomation and messages
+[[rounds]]
+name="地下室的秘密"
+[[rounds.messages]] # system message which provides the round rules
+role="system"
+content="""
+{{- system_message -}}
+"""
+
+[[rounds.messages]]
+role="system"
+content="""
+当前玩家的角色卡:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+当前回合的触发器（TRIGGERS）:
+\"\"\"
+- 地下室里会有一个凶猛的怪兽。
+\"\"\"
+
+当前回合的规则（RULES）:
+\"\"\"
+- 当前回合将在5轮内结束或者玩家进入豪宅的地下室。
+- 当回合结束时，玩家会听到楼上传来一个女人的尖叫。
+\"\"\"
+"""
 
 # the extra informations for the game and message templates
 [metadata]
@@ -70,12 +99,15 @@ system_message="""
 请遵守下面的游戏规则，尽力给玩家带来最好的体验:
 - 游戏由一系列回合(ROUND)组成，每个回合由一系列轮次(TURN)组成。
 - 你需要在每一回合认真评估游戏规则、回合规则、特别是玩家的行动，然后再输出相应的内容。
-- 如果玩家当前的行动需要技能检定，你需要说明技能检定的理由。当玩家遇到克苏鲁相关事物或残忍恐怖事物（如死尸），需要首先进行一次理智检定。
+- 如果玩家当前的行动需要技能检定（一般为发现新线索时需要技能检定），你需要说明技能检定的理由。
 技能检定需要按照以下格式输出：\"\"\"
 {技能检定的理由}
 skill: skill_name (使用 snake_case, 必须使用角色卡的技能)
 difficulty: diffuculty_level (easy, medium or hard)
 \"\"\"
+特殊检定：1. 当玩家遇到克苏鲁相关事物或残忍恐怖事物（如死尸），需要进行一次理智检定（sanity check）。
+2. 当玩家突然遇到人身危险时，需要做出迅速反应时，需要进行敏捷（dexterity)或闪避（dodge）检定。
+
 - 如果玩家的行动不需要技能检定，你可以描述当前情况，并提供接下来的行动选项，像这样进行输出:\"\"\"
 {当前情况的描述}
 possible actions:
