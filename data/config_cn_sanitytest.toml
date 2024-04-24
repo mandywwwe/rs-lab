@@ -1,16 +1,9 @@
 # general config file for the project
 version="0.0.2"
 
-# system message which provides the game rules
-[[messages]]
-role="system"
-content="""
-
-"""
-
 # the first round infomation and messages
 [[rounds]]
-name="鬼屋历险"
+name="奇怪的狗"
 [[rounds.messages]] # system message which provides the round rules
 role="system"
 content="""
@@ -100,13 +93,13 @@ system_message="""
 - 游戏由一系列回合(ROUND)组成，每个回合由一系列轮次(TURN)组成。
 - 你需要在每一回合认真评估游戏规则、回合规则、特别是玩家的行动，然后再输出相应的内容。
 - 如果玩家当前的行动需要技能检定（一般为发现新线索时需要技能检定），你需要说明技能检定的理由。
+特殊检定：1. 当玩家遇到克苏鲁相关事物或残忍恐怖事物（如死尸），需要进行一次理智检定（sanity check）。
+2. 当玩家突然遇到人身危险时，需要做出迅速反应时，需要进行敏捷（dexterity)或闪避（dodge）检定。
 技能检定需要按照以下格式输出：\"\"\"
 {技能检定的理由}
 skill: skill_name (使用 snake_case, 必须使用角色卡的技能)
 difficulty: diffuculty_level (easy, medium or hard)
 \"\"\"
-特殊检定：1. 当玩家遇到克苏鲁相关事物或残忍恐怖事物（如死尸），需要进行一次理智检定（sanity check）。
-2. 当玩家突然遇到人身危险时，需要做出迅速反应时，需要进行敏捷（dexterity)或闪避（dodge）检定。
 
 - 如果玩家的行动不需要技能检定，你可以描述当前情况，并提供接下来的行动选项，像这样进行输出:\"\"\"
 {当前情况的描述}
