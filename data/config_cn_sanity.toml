@@ -49,7 +49,7 @@ content="""
 
 possible actions:
 1. 进入豪宅。
-2. 拍摄豪宅外部的照片。
+2. 拍摄豪宅外部的照片。(需要sanity check）
 3. 与管家交谈。(可能需要一些说服力，以便让你获取更多信息)
 """
 
@@ -124,6 +124,7 @@ age="32"
 birthplace="Arkham"
 residence="New York"
 occupation="Journalist"
+sanity_point = 55
 skills=[
     "photography",
     "persuasion",
@@ -158,3 +159,4 @@ backstory="""
 John Doe is a journalist who has been investigating the mysterious disappearances in Arkham.
 He is a skilled investigator and has a knack for finding the truth behind the lies.
 """
+tag = ""
