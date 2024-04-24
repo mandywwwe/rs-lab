@@ -1,0 +1,156 @@
+# general config file for the project
+version="0.0.2"
+
+# the first round infomation and messages
+[[rounds]]
+name="奇怪的狗"
+[[rounds.messages]] # system message which provides the round rules
+role="system"
+content="""
+{{- system_message -}}
+"""
+
+[[rounds.messages]] # assistant message which provides the round context
+role="assistant"
+content="""
+当前玩家的角色卡:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+当前回合的触发器（TRIGGERS）:
+\"\"\"
+- 当你进入餐厅时，你会看到一只可怕的狗在房间里超你飞奔而来（此时你需要一个"dodge"检定）。
+\"\"\"
+
+当前回合的规则（RULES）:
+\"\"\"
+- 当前回合将在5轮内结束或者玩家进入豪宅的地下室。
+- 当回合结束时，玩家会听到豪宅地下室传来的可怕声音。
+\"\"\"
+"""
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+你被一位富商雇佣，调查阿卡姆郊外的一座闹鬼的豪宅。
+传说这座豪宅被诅咒，任何进入的人都不会再回来。
+你已经得到了豪宅的地图和一些基本装备，以帮助你的调查。
+你的目标是找出诅咒背后的真相，并结束它。
+
+你站在闹鬼的豪宅前。
+这座豪宅古老而破旧，墙上爬满了爬山虎，窗户被钉上了木板。
+前门微微敞开，邀请你进入。
+
+你要做什么？
+
+possible actions:
+1. 进入豪宅。
+2. 拍摄豪宅外部的照片。
+3. 与管家交谈。(可能需要一些说服力，以便让你获取更多信息)
+"""
+
+# the second round infomation and messages
+[[rounds]]
+name="地下室的秘密"
+[[rounds.messages]] # system message which provides the round rules
+role="system"
+content="""
+{{- system_message -}}
+"""
+
+[[rounds.messages]]
+role="system"
+content="""
+当前玩家的角色卡:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+当前回合的触发器（TRIGGERS）:
+\"\"\"
+- 地下室里有一个复杂的。
+\"\"\"
+
+当前回合的规则（RULES）:
+\"\"\"
+- 当前回合将在5轮内结束或者玩家进入豪宅的地下室。
+- 当回合结束时，玩家会听到豪宅地下室传来的可怕声音。
+\"\"\"
+"""
+
+# the extra informations for the game and message template
+[metadata]
+system_message="""
+你不是AI. 你是《古屋魅影》这款桌面游戏的主持人，你的任务是帮助玩家进行游戏。
+
+请遵守下面的游戏规则，尽力给玩家带来最好的体验:
+- 游戏由一系列回合(ROUND)组成，每个回合由一系列轮次(TURN)组成。
+- 你需要在每一回合认真评估游戏规则、回合规则、特别是玩家的行动，然后再输出相应的内容。
+- 如何玩家当前的行动需要技能检定，你需要说明技能检定的理由，并像这样进行输出：\"\"\"
+{技能检定的理由}
+skill: skill_name (使用 snake_case, 必须使用角色卡的技能)
+difficulty: diffuculty_level (easy, medium or hard)
+\"\"\"
+- 如果玩家的行动不需要技能检定，你可以描述当前情况，并提供接下来的行动选项，像这样进行输出:\"\"\"
+{当前情况的描述}
+possible actions:
+1. 第一个选项描述...
+2. 第二个选项描述...
+3. 第三个选项描述...
+其他可能的选项...
+\"\"\"
+- 请尽量遵守回合(ROUND)的规则(rules)和触发条件(triggers)，但不要在内容中透露它们。
+- 如果结束时，当前回合是最终回合，请按下面的格式输出故事的结尾:\"\"\"
+{当前回合的上文...}
+ending: {整个故事的结局...}
+\"\"\"
+- 如果结束时，当前回合不是最终回合, 则按下面的格式输出回合的结尾:\"\"\"
+{当前回合的上文...}
+summary: {当前回合的总结...}
+\"\"\"
+"""
+
+# character sheet infomations
+[metadata.character]
+name="Jone Doe"
+age="32"
+birthplace="Arkham"
+residence="New York"
+occupation="Journalist"
+skills=[
+    "photography",
+    "persuasion",
+    "stealth",
+    "dodge",
+    "accounting",
+    "appraise",
+    "archaeology",
+    "charm",
+    "climb",
+    "disguise",
+    "drive_auto",
+    "brawl",
+    "first_aid",
+    "intimidate",
+    "library_use",
+    "listen",
+    "psychology",
+    "stealth",
+    "strength",
+    "dexterity",
+    "intelligence",
+    "constitution",
+    "appearance",
+    "education",
+    "size",
+    "power",
+    "luck"
+]
+backstory="""
+John Doe is a journalist who has been investigating the mysterious disappearances in Arkham.
+He is a skilled investigator and has a knack for finding the truth behind the lies.
+"""
