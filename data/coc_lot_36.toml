@@ -37,7 +37,7 @@ round summary: the summary of the round...
 
 # the first round infomation and messages
 [[rounds]]
-name="Port Irimare"
+name="The Bid"
 [[rounds.messages]]
 role="system"
 content="""
@@ -116,6 +116,67 @@ possible actions:
 2. $150.
 3. $200.
 """
+
+# the second round infomation and messages
+[[rounds]]
+name="The Storage"
+[[rounds.messages]] # system message which provides the round context
+role="system"
+content="""
+Here is the player's CHARACTER SHEET:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+Here is the CONTEXT of the round:
+\"\"\"
+- You follow the manager through the myriad hallways to his dimly lit office, where the furnishings and appliances remain unchanged since the 90’s. He often reminds you that the facility is in fact even older, and has been here since the 60’s. You made a quick phone call to Alex, a man you owe money to, and explained to him that you will pay him back in a few days once you have it, to which he responded with distasteful threats. The manager took out an old tin box and placed it on his desk and reached towards you with an open palm, gesturing for you to pay up, which you obliged. Upon handing you a key for your newly owned storage room, he urged you to watch some old security footage. Through his CRT screen, he explains to you that the previous owner visited the storage room every day for as long as he can remember. What’s even stranger is that he would hop 3 times towards the storage before entering, and would always bring a paper bag with him, and it would always be empty when he leaves. Regardless of the strange footage and information, you began making your way towards your truck to grab a duffle bag so that you may start clearing the storage and look for things valuable to sell. As you are walking back, you are confronted by a middle-aged hispanic women, she requests that you give her access to her lot, which you purchased last time so that she may recover her old family silver locket.
+
+
+{%- if memories %}
+Here are MEMROIES of the previous rounds:
+{%- for memory in memories %}
+- {{memory}}
+{%- endfor %}
+{%- endif %}
+\"\"\"
+
+Here are the TRIGGERS of the round:
+\"\"\"
+- If PLAYER accepts the hispanic woman's request, then this act of kindness will be saved into MEMORIES.
+- If the PLAYER rejects the hispanic woman's request, then this act of cruelty will be saved into MEMORIES.
+\"\"\"
+
+Here are the RULES of the round:
+\"\"\"
+- Enrich your interactions and descriptions by incorporating literary devices and adding an element of mystery
+- Initiate a SANITY check for the PLAYER if they experience Cthulhu related events or violent scenes. e.g. dead bodies, grotesque scenes, creepy instances, mind breaking knowledge etc.
+- Each ACTION should be written in the following format: 1.{Action description}
+
+- Round completes in more or less than 7 turns, or when the player finds a seance table.
+- There are various objects for the PLAYER to discover, make sure all of them are strange and sinister.
+- Do not end chapter with possible actions.
+\"\"\"
+"""
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+You follow the manager through the myriad hallways to his dimly lit office, where the furnishings and appliances remain unchanged since the 90’s. He often reminds you that the facility is in fact even older, and has been here since the 60’s. You made a quick phone call to Alex, a man you owe money to, and explained to him that you will pay him back in a few days once you have it, to which he responded with distasteful threats. The manager took out an old tin box and placed it on his desk and reached towards you with an open palm, gesturing for you to pay up, which you obliged. Upon handing you a key for your newly owned storage room, he urged you to watch some old security footage.
+
+Through his CRT screen, he explains to you that the previous owner visited the storage room every day for as long as he can remember. What’s even stranger is that he would hop 3 times towards the storage before entering, and would always bring a paper bag with him, and it would always be empty when he leaves. 
+
+Regardless of the strange footage and information, you went to the parking lot to grab your duffle bag so that you may start clearing the storage and look for things valuable to sell. As you are walking back, you are confronted by a middle-aged hispanic women, she requests that you give her access to her lot, which you purchased last time so that she may recover her old family silver locket.
+
+What is your next step?
+
+possible actions:
+1. Reject her
+2. Accept her request but lose out on potential earnings
+3. Ignore her completely
+"""
+
 
 # the extra informations for the game and message templates
 [metadata]
