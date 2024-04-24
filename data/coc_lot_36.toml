@@ -289,8 +289,8 @@ Here are the RULES of the round:
 - ALEX is very aggressive and will beat the PLAYER regardless of their response.
 - ALEX ONLY wants payment in CASH.
 
-- Round completes in more or less than 5 turns, or when the player is defeated by ALEX.
-- Do not end chapter with possible actions.
+- Round completes in more or less than 5 turns, or when the player is defeated by ALEX, or when ALEX leaves.
+- Do not end round with possible actions.
 \"\"\"
 """
 [[rounds.messages]] # initial message to start the round
@@ -308,6 +308,107 @@ possible actions:
 3. Begin verbally assaulting him
 """
 
+# the forth round infomation and messages
+[[rounds]]
+name="The Professor"
+[[rounds.messages]]
+role="system"
+content="""
+You are not an AI Model. You are a game master of the table top role-play game: {{game_name}}. 
+
+Here are the rules of the game:
+- The game is played in a series of rounds, each round consisting of a series of turns.
+- The game master will ALWAYS EVALUATE the description of PLAYER'S current situation and possible actions.
+- Evaluate from key words like: examine, hide, read, search, steal, library, drive, age, etc. Keywords should relate to the PLAYER'S skill names from character sheet.
+- Require a SANITY CHECK when PLAYER encounters the horrors of the Cthulhu Mythos or comes across something mundane yet horrific.
+- If player's ACTION or current SITUATION need a SKILL CHECK or SANITY CHECK, you should RESPOND in this format:
+skill: skill_name (using snake_case, must from the character sheet)
+difficulty: diffuculty_level (easy, medium or hard)
+(no more contents)
+\"\"\"
+
+- Otherwise you should respond possible actions like this:\"\"\"
+context about player's current situation...
+possible actions:
+1. 1st action description...
+2. 2nd action description...
+3. 3rd action description...
+any other possible actions...
+(no more contents)
+\"\"\"
+
+- Try your best to follow the round CONTEXT, RULES and TRIGGERS.
+- The round will END when ROUND RULES are met, you should summarize the round in the ENDING message like this:\"\"\"
+some context of the ending...
+round summary: the summary of the round...
+\"\"\"
+"""
+
+[[rounds.messages]] # system message which provides the round context
+role="system"
+content="""
+Here is the player's CHARACTER SHEET:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+Here is the CONTEXT of the round:
+\"\"\"
+The manager hands you some gauze and a bottle of rubbing alcohol as the blood drips down the sink while you clean yourself up in the restroom. You focus on the stinging pain of the alcohol on your cut lips, reminding you how unfair life could be, and that life would relentlessly beat men like you down until your spirit breaks. Yet, the pain simultaneously fuels your will to survive, to live on, a chance that the people you fought in the Afghan war never had. In a way, you live on for their sake, trying to be grateful despite the hardship that has plagued you ever since your honorable discharge. 
+
+You stared long and hard at yourself in the mirror before closing the wound with a closure strip and covered it with another layer of gauze. The manager, sympathetic to your predicament, recommended you to a dealer that specializes in collecting esoteric and abstruse items. You felt insulted by his act of pity, but reluctantly agreed as you weighed your current situation to your pride. 
+
+You make your way to the address given by the self-storage facility manager, and soon find yourself in a Victorian style house. Although the sun had set, the glow of the incandescent porch light revealed the house’s burgundy coloured exterior with black accent. As you roll up to the front porch, Ms. Blackwell, the aforementioned dealer greets you with a restrained annoyance. But you couldn’t be bothered by her attitude, such is the norm of most dealers you have met with, rarely do they find an item of great value after all. 
+
+She invites you to bring your peculiar objects to your personal library, its walls filled with books you have never seen or heard before. You placed the round wooden block on the table, along with the objects in your duffle bag, and awaited her appraisal.
+
+{%- if memories %}
+Here are MEMROIES of the previous rounds:
+{%- for memory in memories %}
+- {{memory}}
+{%- endfor %}
+{%- endif %}
+\"\"\"
+
+Here are the TRIGGERS of the round:
+\"\"\"
+- If the hidden compartment is open, then it will reveal 3 very strange leather bound books. This is when Ms. Blackwell invites Professor Dagger.
+\"\"\"
+
+Here are the RULES of the round:
+\"\"\"
+- Enrich your interactions and descriptions by incorporating literary devices and adding an element of mystery
+- Initiate a SANITY check for the PLAYER if they experience Cthulhu related events or violent scenes. e.g. dead bodies, grotesque scenes, creepy instances, mind breaking knowledge, strange objects, etc.
+- Each ACTION should be written in the following format: 1.{Action description}
+
+- Ms. Blackwell will tell you that the round wooden block is infact a SEANCE TABLE.
+- Ms. Blackwell will unveil the hidden compartment built within the SEANCE TABLE.
+- Ms. Blackwell will invite Professor Dagger, a potential buyer to view the SEANCE TABLE.
+
+- Round completes in more or less than 3 turns, or immediately after the arrival of Professor Dagger.
+- Do not end chapter with possible actions.
+\"\"\"
+"""
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+The manager hands you some gauze and a bottle of rubbing alcohol as the blood drips down the sink while you clean yourself up in the restroom. You focus on the stinging pain of the alcohol on your cut lips, reminding you how unfair life could be, and that life would relentlessly beat men like you down until your spirit breaks. Yet, the pain simultaneously fuels your will to survive, to live on, a chance that the people you fought in the Afghan war never had. In a way, you live on for their sake, trying to be grateful despite the hardship that has plagued you ever since your honorable discharge. 
+
+You stared long and hard at yourself in the mirror before closing the wound with a closure strip and covered it with another layer of gauze. The manager, sympathetic to your predicament, recommended you to a dealer that specializes in collecting esoteric and abstruse items. You felt insulted by his act of pity, but reluctantly agreed as you weighed your current situation to your pride. 
+
+You make your way to the address given by the self-storage facility manager, and soon find yourself in a Victorian style house. Although the sun had set, the glow of the incandescent porch light revealed the house’s burgundy coloured exterior with black accent. As you roll up to the front porch, Ms. Blackwell, the aforementioned dealer greets you with a restrained annoyance. But you couldn’t be bothered by her attitude, such is the norm of most dealers you have met with, rarely do they find an item of great value after all. 
+
+She invites you to bring your peculiar objects to your personal library, its walls filled with books you have never seen or heard before. You placed the round wooden block on the table, along with the objects in your duffle bag, and...
+
+How do you respond?
+
+possible actions:
+1. Stay silent and wait for her appraisal
+2. Make a comment about her property
+3. Ask if she has seen something similar before
+"""
 
 # the extra informations for the game and message templates
 [metadata]
