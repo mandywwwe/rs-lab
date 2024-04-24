@@ -1,16 +1,9 @@
 # general config file for the project
 version="0.0.2"
 
-# system message which provides the game rules
-[[messages]]
-role="system"
-content="""
-
-"""
-
 # the first round infomation and messages
 [[rounds]]
-name="鬼屋历险"
+name="奇怪的狗"
 [[rounds.messages]] # system message which provides the round rules
 role="system"
 content="""
@@ -29,7 +22,9 @@ content="""
 
 当前回合的触发器（TRIGGERS）:
 \"\"\"
-- 当你进入餐厅时，你会看到一只可怕的狗在房间里超你飞奔而来（此时你需要一个"dodge"检定）。
+- 如果你进入餐厅，你会看到一只可怕的狗在房间里奔跑。
+- 如果你上楼，你会看到一具死尸。
+- 如果你去洗手间并且照镜子，你会发现镜子里你的脸变得扭曲恐怖。
 \"\"\"
 
 当前回合的规则（RULES）:
@@ -59,6 +54,35 @@ possible actions:
 """
 
 # the second round infomation and messages
+[[rounds]]
+name="地下室的秘密"
+[[rounds.messages]] # system message which provides the round rules
+role="system"
+content="""
+{{- system_message -}}
+"""
+
+[[rounds.messages]]
+role="system"
+content="""
+当前玩家的角色卡:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+当前回合的触发器（TRIGGERS）:
+\"\"\"
+- 地下室里会有一个凶猛的怪兽。
+\"\"\"
+
+当前回合的规则（RULES）:
+\"\"\"
+- 当前回合将在5轮内结束或者玩家进入豪宅的地下室。
+- 当回合结束时，玩家会听到楼上传来一个女人的尖叫。
+\"\"\"
+"""
 
 # the extra informations for the game and message template
 [metadata]
@@ -68,7 +92,8 @@ system_message="""
 请遵守下面的游戏规则，尽力给玩家带来最好的体验:
 - 游戏由一系列回合(ROUND)组成，每个回合由一系列轮次(TURN)组成。
 - 你需要在每一回合认真评估游戏规则、回合规则、特别是玩家的行动，然后再输出相应的内容。
-- 如何玩家当前的行动需要技能检定，你需要说明技能检定的理由，并像这样进行输出：\"\"\"
+- 如何玩家当前的行动需要技能检定，你需要说明技能检定的理由。当玩家遇到怪物，令人毛骨悚然的事物或残忍恐怖事物（如死尸），需要首先进行一次理智检定（sanity check）。
+技能检定需要像这样进行输出：\"\"\"
 {技能检定的理由}
 skill: skill_name (使用 snake_case, 必须使用角色卡的技能)
 difficulty: diffuculty_level (easy, medium or hard)
@@ -126,7 +151,8 @@ skills=[
     "education",
     "size",
     "power",
-    "luck"
+    "luck",
+    'sanity'
 ]
 backstory="""
 John Doe is a journalist who has been investigating the mysterious disappearances in Arkham.
