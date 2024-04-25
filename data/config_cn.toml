@@ -63,7 +63,7 @@ content="""
 """
 
 [[rounds.messages]]
-role="system"
+role="assistant"
 content="""
 当前玩家的角色卡:
 \"\"\"
@@ -74,14 +74,37 @@ content="""
 
 当前回合的触发器（TRIGGERS）:
 \"\"\"
-- 地下室里会有一个凶猛的怪兽。
+- 地下室里有一个神秘的雕像，如果你触碰它会看见一些神秘的幻象。
+- 这些幻象需要你通过理智检定才能理解其背后的秘密。
 \"\"\"
 
 当前回合的规则（RULES）:
 \"\"\"
-- 当前回合将在5轮内结束或者玩家进入豪宅的地下室。
-- 当回合结束时，玩家会听到楼上传来一个女人的尖叫。
+- 当前回合将在5轮内结束或者离开地下室。
+- 当回合结束时，玩家会在地下室的出口简单一个神秘的人影。
+- 这个人影会在你遇到他的时候迅速跑向地下室的深处。
 \"\"\"
+"""
+
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+{% if memories %}
+前倾提要:
+\"\"\"
+{%- for memory in memories %}
+- {{memory}}
+{%- endfor %}
+\"\"\"
+{% endif %}
+
+现在你被地下室的尖叫所吸引，来到了地下室的入口。
+你要做什么？
+
+possible actions:
+1. 进入地下室。
+2. 拍摄地下室入口的照片。
+3. 试着在黑暗中寻找光源。
 """
 
 # the extra informations for the game and message template
@@ -124,6 +147,8 @@ age="32"
 birthplace="Arkham"
 residence="New York"
 occupation="Journalist"
+stats={sanity=60}
+tags=[]
 skills=[
     "photography",
     "persuasion",
