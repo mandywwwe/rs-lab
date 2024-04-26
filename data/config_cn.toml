@@ -74,6 +74,7 @@ content="""
 \"\"\"
 - 地下室里有一个神秘的雕像，如果你触碰它会看见一些神秘的幻象。
 - 这些幻象需要你通过理智检定才能理解其背后的秘密。
+- 如果之前的回合遇到了那只狗，狗会再次出现。
 \"\"\"
 
 当前回合的规则（RULES）:
@@ -84,7 +85,7 @@ content="""
 \"\"\"
 """
 
-[[rounds.messages]] # initial message to start the round
+[[rounds.messages]] # initial message to start the second round
 role="assistant"
 content="""
 {% if memories %}
