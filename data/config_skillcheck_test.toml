@@ -47,12 +47,10 @@ You are standing in front of the haunted mansion.
 The mansion is old and decrepit, with ivy growing up the walls and the windows boarded up. 
 The front door is slightly ajar, inviting you inside. 
 
-What do you do?
+Sunddenly you hear a loud crash from inside the mansion.
 
-possible actions:
-1. Enter the mansion.
-2. Take some photos of the mansion's exterior.
-3. Look around the building. (may need a spot hidden skill check)
+skill: sanity
+difficulty: easy
 """
 
 
@@ -93,27 +91,21 @@ possible actions:
 3. Ask about the guard's family
 <end>
 '''
-- You should hide the triggers of the round from the player and reveal it as the game progresses.
-- You should end the round when the player has completed their objective or when the round has reached its limit with 'summary': '''
-game master:
+- If player gained a symptom, you should output the symptom message: '''
+player: I failed with the sanity check, and gained a symptom: 'paranoia'.
+game master: 
 <start>
-context of the round...
-summary: summary of the round...
+symptom: You feel a sense of dread creeping up on you, you are now paranoid.
+...
+possible actions:
+...
 <end>
 '''
 - You should include the triggered events in the 'summary'.
 """
-symptom=[
-    "incoherent speech",
-    "uncontrollable twitching, trembling",
-    "delusions of persecution",
-    "strange appetites (dirt, clay, etc...)",
-    "scratches, punches, and bruises all over the body"
-    ]
 
 # character sheet infomations
 [metadata.character]
-sanity=60
 name="Jone Doe"
 age="32"
 birthplace="Arkham"
@@ -123,4 +115,3 @@ backstory="""
 John Doe is a journalist who has been investigating the mysterious disappearances in Arkham.
 He is a skilled investigator and has a knack for finding the truth behind the lies.
 """
-
