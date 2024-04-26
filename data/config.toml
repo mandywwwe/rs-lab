@@ -103,9 +103,17 @@ summary: summary of the round...
 '''
 - You should include the triggered events in the 'summary'.
 """
+symptom=[
+    "incoherent speech",
+    "uncontrollable twitching, trembling",
+    "delusions of persecution",
+    "strange appetites (dirt, clay, etc...)",
+    "scratches, punches, and bruises all over the body"
+    ]
 
 # character sheet infomations
 [metadata.character]
+sanity=60
 name="Jone Doe"
 age="32"
 birthplace="Arkham"
@@ -115,3 +123,4 @@ backstory="""
 John Doe is a journalist who has been investigating the mysterious disappearances in Arkham.
 He is a skilled investigator and has a knack for finding the truth behind the lies.
 """
+

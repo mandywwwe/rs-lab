@@ -42,12 +42,12 @@ def skill_check(skill:str, dc:Literal["easy", "normal", "hard"]|None, metadata: 
         dc = 75
     elif d == "hard":
         dc = 25
-    roll = roll("1d100").total
-    result = "Success" if roll <= dc else "Failure"
-    if roll < 5:
+    rolled = roll("1d100").total
+    result = "Success" if rolled <= dc else "Failure"
+    if rolled < 5:
         result = "Critical Success"
-    elif roll > 95:
+    elif rolled > 95:
         result = "Critical Failure"
 
-    content += f"\nAnd I rolled a {roll} for a result of {result.upper()}."
+    content += f"\nAnd I rolled a {rolled} for a result of {result.upper()}."
     return content
