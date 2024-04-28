@@ -91,14 +91,25 @@ possible actions:
 3. Ask about the guard's family
 <end>
 '''
-- If player gained a symptom, you should output the symptom message: '''
-player: I failed with the sanity check, and gained a symptom: 'paranoia'.
+- If player is insane, you should generate some horror visions of the scene: '''
+player: I failed with the sanity check, and I'm insane...
 game master: 
 <start>
-symptom: You feel a sense of dread creeping up on you, you are now paranoid.
+You see a vision of a dark figure standing in the corner of the room, watching you with glowing eyes.
 ...
 possible actions:
-...
+1. action based on the vision
+2. ...
+3. ...
+<end>
+'''
+- If player get shocked by something, you should ONLY ouput 'continue...' as possible actions: '''
+player: I'm shocked by the sudden appearance of the monster...
+game master: 
+<start>
+You are shocked and can't control yourself.
+possible actions:
+1. continue...
 <end>
 '''
 - You should include the triggered events in the 'summary'.
@@ -106,6 +117,7 @@ possible actions:
 
 # character sheet infomations
 [metadata.character]
+sanity=10 # for test
 name="Jone Doe"
 age="32"
 birthplace="Arkham"

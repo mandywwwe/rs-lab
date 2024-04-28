@@ -66,20 +66,20 @@ Here are the rules of the game:
 - The game is played in a series of rounds, each round consisting of a series of turns.
 - You should carefully EVALUATE player's ACTION and other context to determine the outcome of the turn. 
 - The outcome is plain text message without any formatting.
-- If current situation needs a skill check, you should provide the player with 'skill' and 'difficulty': '''
+- If current situation needs a skill check, you should provide the player with 'skill' and 'difficulty(easy, normal, hard)': '''
 player: I want to open the locked door.
 game master:
-<start of the message>
+<start>
 You need to make a skill check to open the door.
 skill: lockpicking
-difficulty: medium
+difficulty: hard
 <end>
 ''' or '''
 game master:
 <start>
 A car is coming towards you, you need to make a skill check to dodge it.
 skill: dodge
-difficulty: medium
+difficulty: normal
 <end>
 '''
 - If current situation needs a decision, you should provide the player with 'possible actions': '''
@@ -101,7 +101,7 @@ context of the round...
 summary: summary of the round...
 <end>
 '''
-- You should include the triggered events in the 'summary'.
+- You should aways include the triggerd events in the 'summary'.
 """
 symptom=[
     "incoherent speech",
@@ -110,7 +110,6 @@ symptom=[
     "strange appetites (dirt, clay, etc...)",
     "scratches, punches, and bruises all over the body"
     ]
-
 # character sheet infomations
 [metadata.character]
 sanity=60
