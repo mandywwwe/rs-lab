@@ -2,8 +2,7 @@ import re
 from typing import Literal
 from pydantic import BaseModel
 
-message_pattern = re.compile(r"^([\w_ *]+)\:[ \s]*(.+)*$")
-
+message_pattern = re.compile(r"^(.+)\:[ \s]*(.+)*$")
 
 class Message(BaseModel):
     role: Literal["system", "assistant", "user"]
