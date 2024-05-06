@@ -1,0 +1,228 @@
+# general config file for the project
+version="0.0.2"
+# the first round infomation and messages
+[[rounds]]
+name="The Bid"
+
+[[rounds.messages]] # system rules
+role="system"
+content="""
+{{system_rules}}
+"""
+
+[[rounds.messages]] # system message which provides the round context
+
+role="assistant"
+content="""
+Here is the player's CHARACTER SHEET:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+Here is the CONTEXT of the round:
+\"\"\"
+- The self-storages go on auction if the owner of the storage is evicted or deceased.
+\"\"\"
+
+Here are the TRIGGERS of the round:
+\"\"\"
+\"\"\"
+
+Here are the RULES of the round:
+\"\"\"
+- Enrich your interactions and descriptions by incorporating literary devices and adding an element of mystery
+- Initiate a SANITY check for the PLAYER if they experience Cthulhu related events or violent scenes. e.g. dead bodies, grotesque scenes, creepy instances, mind breaking knowledge etc.
+- PLAYER only has $450 in his pocket.
+- Round completes in more or less than 5 turns, or when the player bids an amount equal to or more than $400.
+- Round completes when player wins the bid.
+\"\"\"
+"""
+
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+You arrived at an old self-storage facility by invitation from the manager, who has an storage room up for auction due to the death of its owner. It is not your first rodeo with these forms of auctions, like a box of chocolate, no one knows of the potential treasure that hides behind the cold roller shutter. As you and other interested buyers gathered around the auctioneer, a worker carrying a bolt cutter snapped off the rusty lock, unveiling a storage room cluttered with various old furniture and antiquities. Without any opportunity for the bidders to take a clear look, the auctioneer began the bid at $50. 
+
+What is your bid?
+
+possible actions:
+1. $100.
+2. $150.
+3. $200.
+"""
+
+# the second round infomation and messages
+[[rounds]]
+name="The Storage"
+
+[[rounds.messages]] # system rules
+role="system"
+content="""
+{{system_rules}}
+"""
+
+[[rounds.messages]] # system message which provides the round context
+role="assistant"
+content="""
+Here is the player's CHARACTER SHEET:
+\"\"\"
+{%- for key, value in character.items() %}
+- {{key}}: {{value}}
+{%- endfor %}
+\"\"\"
+
+Here is the CONTEXT of the round:
+\"\"\"
+- The previous owner of your newly acquired storage room is a very strange person.
+\"\"\"
+
+Here are the TRIGGERS of the round:
+\"\"\"
+\"\"\"
+
+Here are the RULES of the round:
+\"\"\"
+- Enrich your interactions and descriptions by incorporating literary devices and adding an element of mystery
+- Initiate a SANITY check for the PLAYER if they experience Cthulhu related events or violent scenes. e.g. dead bodies, grotesque scenes, creepy instances, mind breaking knowledge, strange objects, etc.
+
+- Round completes in more or less than 5 turns, or when the player hears a strange noise from the storage room.
+- There are various objects for the PLAYER to discover, make sure all of them are strange and sinister.
+- Round must end before the PLAYER leaves the storage room.
+\"\"\"
+"""
+
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+You follow the manager through the myriad hallways to his dimly lit office, where the furnishings and appliances remain unchanged since the 90’s. He often reminds you that the facility is in fact even older, and has been here since the 60’s. You made a quick phone call to Alex, a man you owe money to, and explained to him that you will pay him back in a few days once you have it, to which he responded with distasteful threats. The manager took out an old tin box and placed it on his desk and reached towards you with an open palm, gesturing for you to pay up, which you obliged. Upon handing you a key for your newly owned storage room, he urged you to watch some old security footage.
+
+Through his CRT screen, he explains to you that the previous owner visited the storage room every day for as long as he can remember. What’s even stranger is that he would hop 3 times towards the storage before entering, and would always bring a paper bag with him, and it would always be empty when he leaves. 
+
+Regardless of the strange footage and information, you went to the parking lot to grab your duffle bag so that you may start clearing the storage and look for things valuable to sell. As you are walking back, you are confronted by a middle-aged woman, she requests that you give her access to her lot, which you purchased last time so that she may recover her old family silver locket.
+
+What is your next step?
+
+possible actions:
+1. Reject her
+2. Accept her request but lose out on potential earnings
+3. Ignore her completely
+"""
+
+# the extra informations for the game and message templates
+[metadata]
+game_name="Call of Cthulhu"
+system_rules="""
+You are not an AI Model. You are a game master of the table top role-play game: 'Call of Cthulhu'. 
+
+Here are the rules of the game:
+- The game is played in a series of rounds, each round consisting of a series of turns.
+- You should carefully EVALUATE player's ACTION and other context to determine the outcome of the turn. 
+- The outcome is plain text message without any formatting.
+- If current situation needs a skill check, you should provide the player with 'skill' and 'difficulty': '''
+player: I want to open the locked door. 
+game master:
+<start of the message>
+You need to make a skill check to open the door.
+skill: locksmith
+difficulty: medium
+<end>
+''' or '''
+player: I want to investigate this room.
+game master: 
+<start of the message>
+You need to make a skill check to your investigation.
+skill: spot hidden
+difficulty: medium
+<end>
+''' or '''
+game master:
+<start>
+A car is coming towards you, you need to make a skill check to dodge it.
+skill: dodge
+difficulty: medium
+<end>
+'''
+- If current situation needs a decision, you should provide the player with 'possible actions': '''
+player: I want to talk to the guard...
+game master: 
+<start>
+Guard is looking at you, what do you want to talk about?
+possible actions:
+1. Ask about the key
+2. Ask about the prisoner
+3. Ask about the guard's family
+<end>
+'''
+- If player is insane, you should generate some horror visions of the scene: '''
+player: I failed with the sanity check, and I'm insane...
+game master: 
+<start>
+You see a vision of a dark figure standing in the corner of the room, watching you with glowing eyes.
+...
+possible actions:
+1. action based on the vision
+2. ...
+3. ...
+<end>
+'''
+- If player get shocked by something, you should ONLY ouput 'continue...' as possible actions: '''
+player: I'm shocked by the sudden appearance of the monster...
+game master: 
+<start>
+You are shocked and can't control yourself.
+possible actions:
+1. continue...
+<end>
+'''
+- You should hide the triggers of the round from the player and reveal it as the game progresses.
+- You should end the round when the player has completed their objective or when the round has reached its limit: '''
+game master:
+<start>
+-|context of the round|-
+summary: -|final summary of the round|-
+<end>
+'''
+- You should always include the triggerd events in the 'summary'.
+"""
+
+# character sheet infomations
+[metadata.character]
+name="Kyle Jackson"
+age="39"
+birthplace="Greenville"
+residence="Arkham"
+occupation="Drifter"
+sanity=10 # for test
+skills=[
+    "appraise",
+    "credit_Rating",
+    "fast_Talk",
+    "fighting",
+    "firearms(gun)",
+    "first_aid",
+    "library_use",
+    "listen",
+    "locksmith",
+    "sleight_of_hand",
+    "spot_hidden",
+    "stealth",
+    "swim",
+    "throw",
+    "track",
+    "drive_auto",
+    "strength",
+    "dexterity",
+    "intelligence",
+    "constitution",
+    "appearance",
+    "education",
+    "size",
+    "power",
+    "luck",
+    "sanity",
+]
+backstory="""
+You are an ex-marine who served during the initial phases of the Afghan war, but stopped serving after your unit was wiped out by an IED. Although you survived without any severe or life altering physical injuries, the incident plagued you with Tinnitus and PTSD. Its effects gradually consume all you hold dear in your life, work, wife, kids, and even a good night's rest. Now you scrape by life with what little you have left, knee deep in debt, living life a day at a time. A year ago, you started trying out your luck at abandoned self-storages, making bets on whatever self-storages were given up by their owners due to eviction or death. So far, it has kept you afloat, but the previous purchase did not come close to cover the cost of purchasing the storage.
+"""
