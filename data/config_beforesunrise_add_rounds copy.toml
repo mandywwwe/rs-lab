@@ -304,8 +304,8 @@ Here is the girlfriend's information:
 '''
 
 当前回合的规则（RULES）:
-- 当前回合将在4轮内结束。
-- 在这个回合中，玩家和席琳会聊到各自的感情经历。席琳会告诉玩家，她之前有过一任男友，起初很甜蜜，但三个月后，前男友开始冷落她，她因此容易在爱情里没有安全感。玩家也会向席琳坦白，这次欧洲行是因为他刚刚结束一段感情，他攒了很久的钱，飞来马德里看望女友，但却发现女友和别人在一起了，他很受伤。
+- 当前回合将在2轮内结束。
+- 在这个回合中，玩家和席琳会聊到各自的感情经历。席琳会告诉玩家，她之前有过一任男友，起初很甜蜜，但三个月后，前男友开始冷落她，她因此容易在爱情里没有安全感。
 - 席琳不会一下子全部说出自己的感情经历，玩家需要诱导她逐渐吐露。
 """
 
@@ -321,6 +321,58 @@ actions:
 """
 
 # the seventh round infomation and messages
+[[rounds]]
+name="感情经历2"
+video="/albums/beforesunrise_drink.mp4"
+
+[[rounds.messages]] # system rules
+role="system"
+content="""
+{{system_rules}}
+"""
+
+[[rounds.messages]] # system message which provides the round context
+role="system"
+content="""
+{%- if character %}
+Here is the player's information:
+- name: {{character.name}}
+- age: {{character.age}}
+- gender: {{character.gender}}
+- occupation: {{character.occupation}}
+{%- endif %}
+
+{%- if girlfriend %}
+Here is the girlfriend's information:
+- name: {{girlfriend.name}}
+- age: {{girlfriend.age}}
+- gender: {{girlfriend.gender}}
+- occupation: {{girlfriend.occupation}}
+{%- endif %}
+
+当前回合的触发器（TRIGGERS）:
+'''
+'''
+
+当前回合的规则（RULES）:
+- 当前回合在3轮内结束。
+- 当前回合的结束条件：玩家向席琳坦白这次欧洲行是因为刚刚结束了一段感情，玩家攒了很久的钱，飞来马德里看望前女友，但却发现前女友和别人在一起了，玩家很受伤，只能搭乘明早的廉价航空回洛杉矶。
+"""
+
+[[rounds.messages]] # initial message to start the round
+role="assistant"
+content="""
+context: 昏暗的灯光洒落在复古的木质桌面上，为酒吧营造出一种温馨而私密的空间。席琳低着头，手指轻轻地绕着酒杯边缘，眼神中流露出一丝忧郁。你静静地注视着席琳，心中涌起一股怜悯之情。
+
+席琳的感情故事让你感同身受，你打算和席琳讲述你的感情故事，“席琳，其实我...”
+
+actions:
+1. "我也有类似的经历..."
+2. "我能理解你的感受。"
+3. "爱而不得的确很常见。"
+"""
+
+# the eighth round infomation and messages
 [[rounds]]
 name="亲吻"
 video="/albums/beforesunrise_kiss.mp4"
@@ -376,7 +428,7 @@ actions:
 3. "我不确定..."
 """
 
-# the eighth round infomation and messages
+# the ninth round infomation and messages
 [[rounds]]
 name="初印象"
 video="/albums/beforesunrise_midnight.mp4"
@@ -433,7 +485,7 @@ actions:
 3. "我喜欢你文静的外表下隐藏的小叛逆，让我看到一个更真实的你。"
 """
 
-# the ninth round infomation and messages
+# the tenth round infomation and messages
 [[rounds]]
 name="未来"
 video="/albums/beforesunrise_palmreader.mp4"
@@ -486,7 +538,7 @@ actions:
 3. 抱紧席琳。
 """
 
-# the tenth round infomation and messages
+# the eleventh round infomation and messages
 [[rounds]]
 name="离别"
 video="/albums/beforesunrise_future.mp4"
