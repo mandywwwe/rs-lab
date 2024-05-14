@@ -92,6 +92,9 @@ backstory="""
 You, John Doe, a retired detective, who has lost his family in a tragic accident, and using alcohol to cope with the loss.
 """
 
+[character.skills]
+dodge=45
+sopt_hidden=70
 
 [[chapters]]
 id="r1"
