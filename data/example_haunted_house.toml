@@ -74,7 +74,9 @@ background: ... (ONLY the image listed in the BACKGROUNDS)
 - The narration should be as short as possible, if it's too long, player will lose interest.
 
 current RULES:
-{{rules}}
+{%- for rule in rules %}
+- {{ rule }}
+{%- endfor %}
 
 BACKGROUNDS:
 {%- for background in backgrounds %}
@@ -89,6 +91,12 @@ occupation="Private Detective"
 backstory="""
 You are a private detective. You used to be a police officer, but got fired because you found out a high-powered polician was the person behind a serial murder case.
 """
+items = ["shotgun"]
+
+[character.skills]
+dodge=45
+spot_hidden=70
+persuade = 40
 
 [[chapters]]
 id="r1"
@@ -132,14 +140,9 @@ backgrounds=[
     "kitchen",
 ]
 rules=[
-    "In the library, player will discover the house was sold to Mr. Walter Corbitt in 1835. A successful 'spot_hidden' skill check is needed to find out Mr. Walter Corbitt's body was buried under the house after he died.",
-
-    "To get access to the cases in police station, player needs to persuade Jack, his previous subordinate (needs a 'normal' 'persuade' or 'charm' or 'intimidate' skill check here).",
-    "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
-
-    "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here)",
-
-    "Chapter ends when the player decides to go to the Haunted House.",
+    "The first floor has kitchen (water dripping), living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
+    "If player checks the yard, player will have a chance to get an item (a wrench, need a 'normal' 'spot hidden' skill check)",
+    "Chapter ends when the player hears the door creaking sound from the second floor.",
 ]
 initial="""
 background: back_door
@@ -160,9 +163,11 @@ backgrounds=[
     "first_floor",
 ]
 rules=[
-    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'normal' 'dodge' skill)",
-    "There're 2 floors. First floor has kitchen, living room (with family photo). Second floor has Mr. Walter Corbitt's bedroom, the kids' room.",
-    "Chapter ends when the player finds the basement.",
+    "If player goes to find a weapon, player will find a wrench (add 'wrench' into items)",
+    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill). If player fails at 'dodge' skill check, player will have to fight the dog. Player can use the items to fight.",
+
+    "The first floor has living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
+    "Chapter ends when the player hears the door creaking sound from the second floor.",
 ]
 initial="""
 background: front_door
@@ -183,14 +188,12 @@ backgrounds=[
     "first_floor",
 ]
 rules=[
-    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'normal' 'dodge' skill)",
-    "There're 2 floors",
     "Chapter ends when the player finds the basement.",
 ]
 initial="""
-background: front_door
+background: second_door
 narration: 
-You're standing in front of the house. In spite of your experience, you still got shivered by what you have learnt about.
+You arrive at the second floor.
 
 choices:
 1. Go inside.
