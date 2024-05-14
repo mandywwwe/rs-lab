@@ -1,0 +1,198 @@
+# general config file for the project
+version="0.0.3"
+
+system="""
+You are not an AI Model. You are a narrator of a turn-based role-play game.
+
+GAME:
+```
+name: Haunted House
+theme: Horror
+tonality: Psychological Horror
+```
+
+CHARACTER:
+name: {{character.name}}
+age: {{character.age}}
+occupation: {{character.occupation}}
+
+- Game is played in chapters. Each chapter has several turns.
+- On each turn, you should carefully evaluate my CHARACTER's action to determine the narration. 
+
+- Your should always follow the instructions what player whispers to you."
+
+- There are ONLY 5 types of narrations: 
+1. Basic narration:
+```
+narration: ...
+```
+2. Narration of CHOICES(3 choices at most without any skill check):
+```
+narration: ...
+choices: 
+1. ...
+2. ...
+3. ...
+```
+3. Narration of SKILL_CHECK:
+```
+narration: ...
+skill: ... (spot_hidden,lock_picking, stealth, etc)
+difficulty: ... (normal, hard or exteme)
+```
+4. Narration of chapter ENDING:
+```
+narration: ...
+ending: ...
+```
+5. Narration of GAME OVER:
+```
+narration: ...
+game_over: ...
+```
+
+- If a tag needs to be added, you should provide the tag name like this:
+```
+...
+add_tag(or remove_tag): ... (tag name using snake_case)
+```
+
+- If an item needs to be added or removed from player's inventory, you should ouput like this:
+```
+...
+add_item(or remove_item): ... (item name using snake_case)
+```
+
+- If the background image needs to be different from previous turn, you should ouput at the beginning:
+```
+background: ... (ONLY the image listed in the BACKGROUNDS)
+...
+```
+
+- ONLY add/remove items or tags that are exactly required in the RULES.
+
+- The narration should be as short as possible, if it's too long, player will lose interest.
+
+current RULES:
+{{rules}}
+
+BACKGROUNDS:
+{%- for background in backgrounds %}
+- {{ background }}
+{%- endfor %}
+"""
+
+[character]
+name="William Harveys"
+age=32
+occupation="Private Detective"
+backstory="""
+You are a private detective. You used to be a police officer, but got fired because you found out a high-powered polician was the person behind a serial murder case.
+"""
+
+[[chapters]]
+id="r1"
+next="{%if 'enter_back_door' in tags%}r2-1{%else%}r2-0{%endif%}"
+max_turns=5
+backgrounds=[
+    "your_office",
+    "neighbourhood",
+    "police_station",
+    "library",
+]
+rules=[
+    "In the library, player will discover the house was sold to Mr. Walter Corbitt in 1835. A successful 'spot_hidden' skill check is needed to find out further information that Mr. Walter Corbitt's body was buried underneath the house after he died.",
+
+    "To get access to the cases in police station, player needs to persuade Jack, his previous subordinate (needs a 'normal' 'persuade' skill check here).",
+    "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
+
+    "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here)",
+    
+    "Chapter ends when the player stands in front of the Haunted House.",
+]
+initial="""
+background: your_office
+narration: 
+{{character.backstory}}
+
+You are hired by Mr. Knott to investigate his old Boston house. Weird things keep happening to the former tenants. A Macario kid went crazy and killed his parents. The Porter family got a strange disease and were committed to an asylum.
+
+choices:
+1. Go to the library, find historical reports.
+2. Go to the police station, look into those cases.
+3. Check the neighbourhood.
+"""
+
+[[chapters]]
+id="r2-1"
+next="r3"
+max_turns=5
+backgrounds=[
+    "back_door",
+    "kitchen",
+]
+rules=[
+    "In the library, player will discover the house was sold to Mr. Walter Corbitt in 1835. A successful 'spot_hidden' skill check is needed to find out Mr. Walter Corbitt's body was buried under the house after he died.",
+
+    "To get access to the cases in police station, player needs to persuade Jack, his previous subordinate (needs a 'normal' 'persuade' or 'charm' or 'intimidate' skill check here).",
+    "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
+
+    "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here)",
+
+    "Chapter ends when the player decides to go to the Haunted House.",
+]
+initial="""
+background: back_door
+narration: 
+Thanks to Mr.Dooley's information, you come to the house's back door. 
+
+choices:
+1. Go inside.
+2. Check the yard.
+"""
+
+[[chapters]]
+id="r2-0"
+next="r3"
+max_turns=5
+backgrounds=[
+    "front_door",
+    "first_floor",
+]
+rules=[
+    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'normal' 'dodge' skill)",
+    "There're 2 floors. First floor has kitchen, living room (with family photo). Second floor has Mr. Walter Corbitt's bedroom, the kids' room.",
+    "Chapter ends when the player finds the basement.",
+]
+initial="""
+background: front_door
+narration: 
+You're standing in front of the house. In spite of your experience, you still got shivered by what you have learnt about.
+
+choices:
+1. Go inside.
+2. Find some tool nearby as your weapon, just in case.
+"""
+
+[[chapters]]
+id="r3"
+next=""
+max_turns=5
+backgrounds=[
+    "front_door",
+    "first_floor",
+]
+rules=[
+    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'normal' 'dodge' skill)",
+    "There're 2 floors",
+    "Chapter ends when the player finds the basement.",
+]
+initial="""
+background: front_door
+narration: 
+You're standing in front of the house. In spite of your experience, you still got shivered by what you have learnt about.
+
+choices:
+1. Go inside.
+2. Find some tool nearby as your weapon, just in case.
+"""
