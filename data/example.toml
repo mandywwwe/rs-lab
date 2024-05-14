@@ -74,7 +74,9 @@ background: ... (ONLY the image listed in the BACKGROUNDS)
 - The narration should be as short as possible, if it's too long, player will lose interest.
 
 current RULES:
-{{rules}}
+{%- for rule in rules %}
+- {{ rule }}
+{%- endfor %}
 
 BACKGROUNDS:
 {%- for background in backgrounds %}
