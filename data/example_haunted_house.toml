@@ -91,12 +91,28 @@ occupation="Private Detective"
 backstory="""
 You are a private detective. You used to be a police officer, but got fired because you found out a high-powered polician was the person behind a serial murder case.
 """
-items = ["shotgun"]
 
 [character.skills]
 dodge=45
 spot_hidden=70
 persuade = 40
+stealth = 50
+first_aid = 20
+
+[[character.items]]
+id="alcohol"
+item_type="consumable"
+description="A bottle of alcohol."
+
+[[character.items]]
+id="lighter"
+item_type="tool"
+description="A lighter"
+
+[[character.items]]
+id="flashlight"
+item_type="tool"
+description="A flashlight with low battery"
 
 [[chapters]]
 id="r1"
@@ -115,7 +131,7 @@ rules=[
     "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
 
     "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here)",
-    
+    "In this chapter, player will not game over no matter what happens.",
     "Chapter ends when the player stands in front of the Haunted House.",
 ]
 initial="""

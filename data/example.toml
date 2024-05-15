@@ -92,12 +92,6 @@ occupation="Retired Detective"
 backstory="""
 You, John Doe, a retired detective, who has lost his family in a tragic accident, and using alcohol to cope with the loss.
 """
-<<<<<<< HEAD
-items = "shotgun"
-[character.skills]
-dodge=45
-sopt_hidden=70
-=======
 
 [character.skills]
 dodge=45
@@ -117,7 +111,6 @@ description="A lighter"
 id="flashlight"
 item_type="tool"
 description="A flashlight with low battery"
->>>>>>> main
 
 [[chapters]]
 id="r1"
