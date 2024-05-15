@@ -85,6 +85,27 @@ BACKGROUNDS:
 {%- endfor %}
 """
 
+[[list.items]]
+id="alcohol"
+item_type="consumable"
+amount=3
+description="A bottle of alcohol."
+
+[[list.items]]
+id="lighter"
+item_type="tool"
+description="A lighter"
+
+[[list.items]]
+id="flashlight"
+item_type="tool"
+description="A flashlight with low battery"
+
+[[list.items]]
+id="basement_key"
+item_type="key"
+description="Basement key which is retrieved from the dog's collar."
+
 [character]
 name="John Doe"
 age=62
@@ -92,25 +113,12 @@ occupation="Retired Detective"
 backstory="""
 You, John Doe, a retired detective, who has lost his family in a tragic accident, and using alcohol to cope with the loss.
 """
+items=["alcohol","lighter","flashlight"]
 
 [character.skills]
 dodge=45
 spot_hidden=70
 
-[[character.items]]
-id="alcohol"
-item_type="consumable"
-description="A bottle of alcohol."
-
-[[character.items]]
-id="lighter"
-item_type="tool"
-description="A lighter"
-
-[[character.items]]
-id="flashlight"
-item_type="tool"
-description="A flashlight with low battery"
 
 [[chapters]]
 id="r1"
