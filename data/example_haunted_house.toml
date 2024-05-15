@@ -84,6 +84,31 @@ BACKGROUNDS:
 {%- endfor %}
 """
 
+[[list.items]]
+id="alcohol"
+item_type="consumable"
+description="A bottle of alcohol."
+
+[[list.items]]
+id="lighter"
+item_type="tool"
+description="A lighter"
+
+[[list.items]]
+id="flashlight"
+item_type="tool"
+description="A flashlight with low battery"
+
+[[list.items]]
+id="shotgun"
+item_type="weapon"
+description="A shotgun with only 1 bullet"
+
+[[list.items]]
+id="wrench"
+item_type="tool"
+description="A heavy wrench"
+
 [character]
 name="William Harveys"
 age=32
@@ -91,6 +116,7 @@ occupation="Private Detective"
 backstory="""
 You are a private detective. You used to be a police officer, but got fired because you found out a high-powered polician was the person behind a serial murder case.
 """
+items=["alcohol","lighter","flashlight","shotgun"]
 
 [character.skills]
 dodge=45
@@ -98,21 +124,6 @@ spot_hidden=70
 persuade = 40
 stealth = 50
 first_aid = 20
-
-[[character.items]]
-id="alcohol"
-item_type="consumable"
-description="A bottle of alcohol."
-
-[[character.items]]
-id="lighter"
-item_type="tool"
-description="A lighter"
-
-[[character.items]]
-id="flashlight"
-item_type="tool"
-description="A flashlight with low battery"
 
 [[chapters]]
 id="r1"
@@ -156,7 +167,7 @@ backgrounds=[
     "kitchen",
 ]
 rules=[
-    "The first floor has kitchen (water dripping), living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
+    "If player goes inside, player can explore the first floor. The first floor has kitchen (water dripping), living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
     "If player checks the yard, player will have a chance to get an item (a wrench, need a 'normal' 'spot hidden' skill check)",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
 ]
@@ -173,17 +184,18 @@ choices:
 [[chapters]]
 id="r2-0"
 next="r3"
-max_turns=5
+max_turns=10
 backgrounds=[
     "front_door",
     "first_floor",
 ]
 rules=[
-    "If player goes to find a weapon, player will find a wrench (add 'wrench' into items)",
-    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill). If player fails at 'dodge' skill check, player will have to fight the dog. Player can use the items to fight.",
-
-    "The first floor has living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
+    "If player goes to find a weapon, player will find a wrench (add 'wrench' into items).",
+    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill). If player fails at 'dodge' skill check, player will have to fight the dog.",
+    "If player fire the 'shotgun', 'shotgun' will be removed from the items.",
+    "After player's fight with the dog, player can explore the first floor. The first floor has living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
+    "When player rolls a CRITICAL FAILTURE during the fight, GAME_OVER.",
 ]
 initial="""
 background: front_door
