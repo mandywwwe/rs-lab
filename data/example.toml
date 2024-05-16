@@ -34,10 +34,10 @@ choices:
 2. ...
 3. ...
 ```
-3. Narration of SKILL_CHECK:
+3. Narration of SKILL CHECK:
 ```
 narration: ...
-skill: ... (spot_hidden,lock_picking, stealth, etc)
+skill_check: ... (spot_hidden,lock_picking, stealth, etc)
 difficulty: ... (normal, hard or exteme)
 ```
 4. Narration of chapter ENDING:
@@ -51,13 +51,13 @@ narration: ...
 game_over: ...
 ```
 
-- If a tag needs to be added, you should provide the tag name like this:
+- If a tag needs to be added or removed, you should provide the tag name like this:
 ```
 ...
 add_tag(or remove_tag): ... (tag name using snake_case)
 ```
 
-- If an item needs to be added or removed from player's inventory, you should ouput like this:
+- If an item needs to be added or removed, you should ouput like this:
 ```
 ...
 add_item(or remove_item): ... (item name using snake_case)
@@ -143,11 +143,11 @@ rules=[
 
     "Second floor has 3 rooms: main bedroom, child's bedroom, study room",
     "When the player enters the study room, he will encounter a black dog running towards him(add a 'dog_met' tag here), and run away(needs a 'normal' 'dodge' skill check here)",
-    "If player successfully dodges the dog, he will find the collar of the dog on the floor, and you will retrieve the 'basement_key' from the collar.",
+    "If player successfully dodges the dog, he will find the collar of the dog on the floor, and you will RETRIEVE the 'basement_key' from the collar.",
     "If player failed to dodge the dog, dog will disappear in the direction of the main bedroom.",
 
-    "The 'basement_key' can also be retrieved with a sucessful 'spot_hidden' skill check in the main bedroom after the dog encounter.",
-    "The 'basement_key' will be removed when chapter ends.",
+    "The 'basement_key' can also be ADDED with a sucessful 'spot_hidden' skill check in the main bedroom after the dog encounter.",
+    "The 'basement_key' will be REMOVED when the basement door is unlocked.",
 
     "Chapter ends when the player enter the basement.",
     "When MAX_TURNS reached, if player retrived the 'basement_key' or unlocked the basement door, he will enter the basement. Otherwise, he will leave the house and GAME_OVER.",
