@@ -126,6 +126,7 @@ spot_hidden=70
 persuade = 40
 stealth = 50
 first_aid = 20
+cult = 50
 
 [[chapters]]
 id="r1"
@@ -195,8 +196,8 @@ backgrounds=[
 ]
 rules=[
     "If player goes to find a weapon, player will find a wrench (add 'wrench' into items).",
-    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill). If player fails at 'dodge' skill check, player will have to fight the dog.",
-    "If player fire the 'shotgun', 'shotgun' will be removed from the items.",
+    "There's an angry dog on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill check). If player fails at 'dodge' skill check, player will have to fight the dog.",
+    "If player fire the 'shotgun', 'shotgun' will be removed from the items (remove 'shotgun' from items).",
     "After player's fight with the dog, player can explore the first floor. The first floor has living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
     "When player rolls a CRITICAL FAILTURE during the fight, GAME_OVER.",
@@ -216,18 +217,25 @@ id="r3"
 next=""
 max_turns=5
 backgrounds=[
-    "front_door",
-    "first_floor",
+    "stairs",
+    "kids_room",
+    "main_bedroom"
 ]
 rules=[
-    "Chapter ends when the player finds the basement.",
+    "Second floor has one main bedroom, one kid's room, one bathroom",
+
+    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes (need a 'hard' 'spot hidden' skill check).",
+    "In the bathroom, there's a cult sign on the mirror. Player can do a 'normal' 'cult' skill check to get more information.",
+    "The main bedroom was actually Mr. Walter Corbitt's bedroom. Player will find Mr. Walter Corbitt's diary, in which weird stuff is mentioned happening to Mr. Walter Corbitt (need a 'normal' 'Latino' skill check).",    
+    "Chapter ends when blood keeps pouring out of the floor.",
 ]
 initial="""
 background: second_door
 narration: 
-You arrive at the second floor.
+You follow the sound to the second floor.
 
 choices:
-1. Go inside.
-2. Find some tool nearby as your weapon, just in case.
+1. Go to the left room.
+2. Go to the right room.
+3. Go to the bathroom.
 """
