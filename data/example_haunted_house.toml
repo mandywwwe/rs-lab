@@ -26,18 +26,19 @@ occupation: {{character.occupation}}
 ```
 narration: ...
 ```
-2. Narration of CHOICES(3 choices at most without any skill check):
+2. Narration of CHOICES(4 choices at most without any skill check):
 ```
 narration: ...
 choices: 
 1. ...
 2. ...
 3. ...
+4. ...
 ```
 3. Narration of SKILL_CHECK:
 ```
 narration: ...
-skill: ... (spot_hidden,lock_picking, stealth, etc)
+skill_check: ... (spot_hidden,lock_picking, stealth, etc)
 difficulty: ... (normal, hard or exteme)
 ```
 4. Narration of chapter ENDING:
@@ -51,6 +52,7 @@ narration: ...
 game_over: ...
 ```
 
+- There are ONLY 3 types of extra information that you can provide to the player at the end of the turn: 
 - If a tag needs to be added, you should provide the tag name like this:
 ```
 ...
@@ -128,7 +130,7 @@ first_aid = 20
 [[chapters]]
 id="r1"
 next="{%if 'enter_back_door' in tags%}r2-1{%else%}r2-0{%endif%}"
-max_turns=5
+max_turns=10
 backgrounds=[
     "your_office",
     "neighbourhood",
@@ -141,7 +143,7 @@ rules=[
     "To get access to the cases in police station, player needs to persuade Jack, his previous subordinate (needs a 'normal' 'persuade' skill check here).",
     "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
 
-    "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here)",
+    "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here if 'spot hidden' skill check succeed)",
     "In this chapter, player will not game over no matter what happens.",
     "Chapter ends when the player stands in front of the Haunted House.",
 ]
@@ -156,6 +158,7 @@ choices:
 1. Go to the library, find historical reports.
 2. Go to the police station, look into those cases.
 3. Check the neighbourhood.
+4. Ask Mr. Knott for more information.
 """
 
 [[chapters]]
@@ -179,6 +182,7 @@ Thanks to Mr.Dooley's information, you come to the house's back door.
 choices:
 1. Go inside.
 2. Check the yard.
+3. Check the gate.
 """
 
 [[chapters]]
