@@ -22,12 +22,12 @@ occupation: {{character.occupation}}
 
 - Your should always follow the instructions what player whispers to you."
 
-- There are ONLY 5 types of narrations: 
+- There are 5 types of narrations: 
 1. Basic narration:
 ```
 narration: ...
 ```
-2. Narration of CHOICES(3 choices at most without any skill check):
+2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
 ```
 narration: ...
 choices: 
@@ -52,7 +52,7 @@ narration: ...
 game_over: ...
 ```
 
-- There are ONLY 3 types of extra information that you can provide to the player at the end of the turn: 
+- There are 3 types of extra information that you can provide to the player at the end of the turn: 
 1. If a tag needs to be added, you should provide the tag name like this:
 ```
 ...
