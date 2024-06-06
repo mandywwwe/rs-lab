@@ -26,7 +26,7 @@ occupation: {{character.occupation}}
 ```
 narration: ...
 ```
-2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
+2. Narration of CHOICES (ALWAYS 4 choices, without skill check):
 ```
 narration: ...
 choices: 
@@ -134,7 +134,7 @@ hp=100
 attack=5
 
 [character.skills]
-dodge=10
+dodge=61
 spot_hidden=70
 
 
@@ -154,14 +154,14 @@ backgrounds=[
 ]
 rules=[
     "The house has 3 floors: basement, ground floor, and first floor.",
-    "Ground floor has 3 rooms: dining room, meeting room and kitchen",
+    "Ground floor has 3 rooms: dining room, meeting room and kitchen.",
     "In ground floor's rooms, player heards some strange noises from the first floor.",
 
     "Your will discover the door to the basement in the meeting room(add a 'basement_found' tag here).",
     "Basement's door needs a key or a 'hard' 'lock_picking' skill check to open it.",
 
-    "Second floor has 3 rooms: main bedroom, child's bedroom, study room",
-    "When the player enters the house, he will encounter a black dog running towards him(add a 'dog_met' tag here), and run away(needs a 'normal' 'dodge' skill check here)",
+    "First floor has 3 rooms: main bedroom, child's bedroom, study room",
+    "When the player enters the main bedroom from First floor, he will encounter a black dog running towards him(add a 'dog_met' tag here), and run away(needs a 'normal' 'dodge' skill check here)",
 
     "If player failed to dodge the dog, he will start the BATTLE with 'dog",
     "If player successfully dodges the dog, he will find the collar of the dog on the floor, and you will retrieve the 'basement_key' from the collar.",
