@@ -26,14 +26,13 @@ occupation: {{character.occupation}}
 ```
 narration: ...
 ```
-2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
+2. Narration of CHOICES(ALWAYS 3 choices, without skill check):
 ```
 narration: ...
 choices: 
 1. ...
 2. ...
 3. ...
-4. ...
 ```
 3. Narration of SKILL_CHECK:
 ```
@@ -90,44 +89,40 @@ BACKGROUNDS:
 """
 
 [[list.items]]
-id="alcohol"
-item_type="consumable"
-description="A bottle of alcohol."
+name = '0.38 revolver'
+id="revolver"
+item_type = 'weapon'
+requirement ="handgun"
+description="A 0.38 revolver with 6 bullets"
+[list.items.stats]
+attack="1d10"
 
 [[list.items]]
-id="lighter"
+name = 'brawl'
+id="brawl"
+item_type = 'weapon'
+requirement ="brawl"
+description="fight with your hands"
+[list.items.stats]
+attack="1d3+DB"
+
+[[list.items]]
+name = 'lucky charm key ring'
+id="key ring"
 item_type="tool"
-description="A lighter"
+description="Luck charm key ring."
 
 [[list.items]]
-id="flashlight"
+name = 'a pack of cigarettes'
+id="cigarettes"
 item_type="tool"
-description="A flashlight with low battery"
+description="a pack of cigarettes"
 
 [[list.items]]
-id="shotgun"
-item_type="weapon"
-description="A shotgun with only 1 bullet."
-requirement = ['shotgun']
-
-[list.items.stats]
-attack="1d6"
-
-[[list.items]]
-id="axe"
-item_type="weapon"
-description="A heavy axe"
-requirement = ['strength']
-
-[list.items.stats]
-attack="1d6"
-
-[[list.items]]
-id="wrench"
-item_type="weapon"
-description="A heavy wrench"
-[list.items.stats]
-attack="1d6"
+name = 'a cigarette lighter'
+id="cigarette lighter"
+item_type="tool"
+description="cigarette lighter"
 
 [[list.enemies]]
 id="dog"
@@ -148,32 +143,55 @@ attack=3
 [[list.backgrounds]]
 
 [character]
-name="William Harveys"
-age=32
-occupation="Private Detective"
+name="Harvey Waters"
+age = 36
+occupation="Private Investigator"
 backstory="""
-You are a private detective. You used to be a police officer, but got fired because you found out a high-powered polician was the person behind a serial murder case.
+You are a cautious, world-weary skeptic with a rough exterior, distrustful of others and the supernatural, relying on your luck charm key ring during investigations.
 """
-items=["alcohol","lighter","flashlight","shotgun","axe"]
+items=["cigarettes","cigarette lighter","key ring"]
 
 [character.stats]
-hp=100
-attack=5
+STR = 80  
+SIZ = 50   
+CON = 70   
+DEX = 70   
+APP = 50   
+INT = 50   
+POW = 60   
+EDU = 40   
+
+HP = 12    
+MP = 12
+Luck = 50
+SAN = 60
+
+MOV = 9
+Build = 1
+DB = '+1d4'
 
 [character.skills]
-dodge=45
-spot_hidden=70
-persuade = 40
-stealth = 50
-first_aid = 20
-cult = 50
-shotgun = 50
-strength = 50
+photography = 60
+disguise = 60
+law = 40
+library_use = 50
+fast_talk = 60
+psychology = 60
+spot_hidden = 50
+handgun = 40
+brawl = 70  
+credit_rating = 20
+dodge = 30
+intimidate = 35
+english = 40
+listen = 40
+mechanical_repair = 30
+stealth = 40
 
 [[chapters]]
 id="r1"
 next="{%if 'enter_back_door' in tags%}r2-1{%else%}r2-0{%endif%}"
-max_turns=10
+max_turns=5
 backgrounds=[
     "your_office",
     "neighbourhood",
@@ -201,7 +219,6 @@ choices:
 1. Go to the library, find historical reports.
 2. Go to the police station, look into those cases.
 3. Check the neighbourhood.
-4. Ask Mr. Knott for more information.
 """
 
 [[chapters]]
@@ -231,7 +248,7 @@ choices:
 [[chapters]]
 id="r2-0"
 next="r3"
-max_turns=10
+max_turns=5
 backgrounds=[
     "front_door",
     "first_floor",

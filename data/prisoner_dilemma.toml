@@ -1,0 +1,196 @@
+
+# general config file for the project
+version="0.0.3"
+
+system="""
+You are not an AI Model. You are a narrator of a turn-based role-play game.
+
+GAME:
+```
+name: The Prisoner's Dilemma
+theme: Horror
+tonality: Psychological Horror
+```
+
+CHARACTER:
+name: {{character.name}}
+age: {{character.age}}
+occupation: {{character.occupation}}
+
+- Game is played in chapters. Each chapter has several turns.
+- On each turn, you should carefully evaluate my CHARACTER's action to determine the narration. 
+
+- Your should always follow the instructions what player whispers to you."
+
+- There are 6 types of narrations: 
+1. Basic narration:
+```
+narration: ...
+```
+2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
+```
+narration: ...
+choices: 
+1. ...
+2. ...
+3. ...
+```
+3. Narration of SKILL_CHECK:
+```
+narration: ...
+skill_check: ... (spot_hidden,lock_picking, stealth, etc)
+difficulty: ... (normal, hard or exteme)
+```
+4. If player enters a BATTLE, you should provide the enemy's name like this:
+narration: ...
+battle_with: ... (enemy_name)
+5. Narration of chapter ENDING:
+```
+narration: ...
+ending: ...
+```
+6. Narration of GAME OVER:
+```
+narration: ...
+game_over: ...
+```
+
+- There are 3 types of extra information that you can provide to the player at the end of the turn: 
+1. If a tag needs to be added, you should provide the tag name like this:
+```
+...
+add_tag(or remove_tag): ... (tag name using snake_case)
+```
+
+2. If an item needs to be added or removed from player's inventory, you should ouput like this:
+```
+...
+add_item(or remove_item): ... (item name using snake_case)
+```
+
+3. If the background image needs to be different from previous turn, you should ouput at the beginning:
+```
+...
+background: ... (ONLY the image listed in the BACKGROUNDS)
+
+```
+
+- ONLY add/remove items or tags that are exactly required in the RULES.
+
+- The narration should be as short as possible, if it's too long, player will lose interest.
+
+current RULES:
+{%- for rule in rules %}
+- {{ rule }}
+{%- endfor %}
+
+BACKGROUNDS:
+{%- for background in backgrounds %}
+- {{ background }}
+{%- endfor %}
+"""
+
+[[list.items]]
+id="alcohol"
+item_type="consumable"
+amount=3
+description="A bottle of alcohol."
+
+[[list.items]]
+id="lighter"
+item_type="tool"
+description="A lighter"
+
+[[list.items]]
+id="flashlight"
+item_type="tool"
+description="A flashlight with low battery"
+
+[[list.items]]
+id="basement_key"
+item_type="key"
+description="Basement key which is retrieved from the dog's collar."
+
+[[list.enemies]]
+id="dog"
+name="Black Dog"
+description="A black dog with gray eyes."
+[list.enemies.stats]
+hp=5
+attack=2
+
+[[list.backgrounds]]
+
+[character]
+name="John Doe"
+age=24
+occupation="Thief"
+backstory="""
+A master thief who grew up on the streets, you honed your skills in the underbelly of the city, making a living through stealth and cunning.
+"""
+items=["alcohol","lighter","flashlight"]
+
+[character.stats]
+strength=65
+constitution=70
+size=60
+dexterity=55
+appearance=60
+intelligence=75
+power=55
+education=65
+hp=13
+mp=5
+san = 55
+luck=53
+attack=5
+
+[character.skills]
+bargain=60
+fast_talk=70
+brawl=65
+grapple=60
+handgun=75
+dodge=50
+law=60
+library_use=65
+persuade=70
+psychology=75
+stealth=55
+track=65
+
+[[chapters]]
+id="r1"
+next="{%if 'dog_met' in tags%}r2-1{%else%}r2-0{%endif%}"
+max_turns=5
+backgrounds=[
+    ""
+]
+rules=[
+    "The house has 3 floors: basement, ground floor, and first floor.",
+    "Ground floor has 3 rooms: dining room, meeting room and kitchen",
+    "In ground floor's rooms, player heards some strange noises from the first floor.",
+
+    "Your will discover the door to the basement in the meeting room(add a 'basement_found' tag here).",
+    "Basement's door needs a key or a 'hard' 'lock_picking' skill check to open it.",
+
+    "Second floor has 3 rooms: main bedroom, child's bedroom, study room",
+    "When the player enters the house, he will encounter a black dog running towards him(add a 'dog_met' tag here), and run away(needs a 'normal' 'dodge' skill check here)",
+
+    "If player failed to dodge the dog, he will start the BATTLE with 'dog",
+    "If player successfully dodges the dog, he will find the collar of the dog on the floor, and you will retrieve the 'basement_key' from the collar.",
+    "If player failed to dodge the dog, dog will disappear in the direction of the main bedroom.",
+
+    "The 'basement_key' can also be retrieved with a sucessful 'spot_hidden' skill check in the main bedroom after the dog encounter.",
+    "The 'basement_key' will be removed when chapter ends.",
+
+    "Chapter ends when the player enter the basement.",
+    "When MAX_TURNS reached, if player retrived the 'basement_key' or unlocked the basement door, he will enter the basement. Otherwise, he will leave the house and GAME_OVER.",
+]
+initial="""
+narration: 
+{{character.backstory}}
+You have been investigating a series of murders in the town for many years.
+The recent clues led you to a abandoned house in the forest. Now you are standing in front of the house.
+background: house_front
+"""
