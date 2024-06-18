@@ -124,9 +124,9 @@ attack=2
 [character]
 name="John Doe"
 age=24
-occupation="Thief"
+occupation="Private Detective"
 backstory="""
-A master thief who grew up on the streets, you honed your skills in the underbelly of the city, making a living through stealth and cunning.
+Once a dedicated police detective, you left the force to pursue a career as a private investigator, using your keen mind and tough demeanor to solve cases the authorities couldn't.
 """
 items=["alcohol","lighter","flashlight"]
 
@@ -157,40 +157,44 @@ library_use=65
 persuade=70
 psychology=75
 stealth=55
-track=65
+spot_hidden=65
 
 [[chapters]]
 id="r1"
-next="{%if 'dog_met' in tags%}r2-1{%else%}r2-0{%endif%}"
+next="r2"
 max_turns=5
 backgrounds=[
-    ""
+    "house_inside"
 ]
 rules=[
-    "The house has 3 floors: basement, ground floor, and first floor.",
-    "Ground floor has 3 rooms: dining room, meeting room and kitchen",
-    "In ground floor's rooms, player heards some strange noises from the first floor.",
-
-    "Your will discover the door to the basement in the meeting room(add a 'basement_found' tag here).",
-    "Basement's door needs a key or a 'hard' 'lock_picking' skill check to open it.",
-
-    "Second floor has 3 rooms: main bedroom, child's bedroom, study room",
-    "When the player enters the house, he will encounter a black dog running towards him(add a 'dog_met' tag here), and run away(needs a 'normal' 'dodge' skill check here)",
-
-    "If player failed to dodge the dog, he will start the BATTLE with 'dog",
-    "If player successfully dodges the dog, he will find the collar of the dog on the floor, and you will retrieve the 'basement_key' from the collar.",
-    "If player failed to dodge the dog, dog will disappear in the direction of the main bedroom.",
-
-    "The 'basement_key' can also be retrieved with a sucessful 'spot_hidden' skill check in the main bedroom after the dog encounter.",
-    "The 'basement_key' will be removed when chapter ends.",
-
-    "Chapter ends when the player enter the basement.",
-    "When MAX_TURNS reached, if player retrived the 'basement_key' or unlocked the basement door, he will enter the basement. Otherwise, he will leave the house and GAME_OVER.",
+    "Feeling confused, player can look for clues by checking the father's diary, or call the prison, or look into the cases before",
+    "Player will eventually go to the prison no matter what",
+    "Chapter ends when the player decides to go to the prison.",
 ]
 initial="""
 narration: 
 {{character.backstory}}
-You have been investigating a series of murders in the town for many years.
-The recent clues led you to a abandoned house in the forest. Now you are standing in front of the house.
-background: house_front
+You've been looking for your missing father for years. Returning home on a stormy night, you find a strange envelope on the floor. It's from HMP Dartmoor Prison, Devonshire, England. The letter reads, "I know you are looking for your father's locket. If you want to find it, come to see me. — Mr. X." The shadows in the room seem to deepen as a chill runs down the investigator's spine, and questions flood their mind, tinged with a sense of foreboding and dread.
+background: house_inside
+"""
+
+[[chapters]]
+id="r2"
+next="{%if 'dog_met' in tags%}r2-1{%else%}r2-0{%endif%}"
+max_turns=5
+backgrounds=[
+    "prison_outside",
+    "prison_hallway",
+    "prison_host_room",
+]
+rules=[
+    "Feeling confused, player can look for clues by checking the father's diary, or call the prison, or look into the cases before",
+    "Player will eventually go to the prison no matter what",
+    "Chapter ends when the player decides to go to the prison.",
+]
+initial="""
+narration: 
+{{character.backstory}}
+Arriving at the Prison, you are greeted by a 40-year-old man named Alexander. 
+background: prison_outside
 """
