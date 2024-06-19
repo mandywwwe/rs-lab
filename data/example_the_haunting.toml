@@ -26,7 +26,7 @@ occupation: {{character.occupation}}
 ```
 narration: ...
 ```
-2. Narration of CHOICES(ALWAYS 3 choices, without skill check):
+2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
 ```
 narration: ...
 choices: 
@@ -191,58 +191,65 @@ stealth = 40
 [[chapters]]
 id="r1"
 next="{%if 'enter_back_door' in tags%}r2-1{%else%}r2-0{%endif%}"
-max_turns=5
+max_turns=10
 backgrounds=[
     "your_office",
     "neighbourhood",
     "police_station",
     "library",
+    "asylum",
 ]
 rules=[
-    "In the library, player will discover the house was sold to Mr. Walter Corbitt in 1835. A successful 'spot_hidden' skill check is needed to find out further information that Mr. Walter Corbitt's body was buried underneath the house after he died.",
+    "In the library, player will discover the house was built by a wealthy businessman in 1835, but he died after the house is finished building, the house was then sold to Mr. Walter Corbitt in 1835. A successful 'library_use' or 'spot_hidden' skill check is needed to find out that Mr. Walter Corbitt was not getting along with the neighborhood. He was lawsuit by neighbors due to his will to be buried underneath the house after he died.",
 
     "To get access to the cases in police station, player needs to persuade Jack, his previous subordinate (needs a 'normal' 'persuade' skill check here).",
-    "In police station, player will find out there're abnormal animal-like cruises on the Macario parents' bodies.",
+    "In police station, player will find out Macario's case. The parents were stabbed by their kid with a fruit knife, 18 wounds in total. When the police arrived, the kid was in extreme thrill.The police shot the Macario kid. When checking his body, they found unusual animal bruise.",
+
+    "In the asylum, player will find Lily Porter, mumbling. When asked about the house, Lily Porter will immediately get scared. After a successful 'normal' 'fast_talk' skill check, she will tell there is a monster in the house, with green eyes. Sometimes, when she wakes up at midnight, it staying besides her bed, staring at her with those eyes. Her husband died shortly after they left the house, the cause of his death is abnormal.",
 
     "If player checks the neighbourhood, Mr. Dooley, a vendor of cigars and newspapers nearby, will tell you some detailed information about the Macario and Porter families. Player will further know entering the back door is safer (need a 'hard', 'spot hidden' skill, add a 'enter_back_door' tag here if 'spot hidden' skill check succeed)",
     "In this chapter, player will not game over no matter what happens.",
-    "Chapter ends when the player stands in front of the Haunted House.",
+    "Chapter ends when the player decides to go straight to the Haunted House.",
 ]
 initial="""
 background: your_office
 narration: 
 {{character.backstory}}
-
 You are hired by Mr. Knott to investigate his old Boston house. Weird things keep happening to the former tenants. A Macario kid went crazy and killed his parents. The Porter family got a strange disease and were committed to an asylum.
 
 choices:
 1. Go to the library, find historical reports.
 2. Go to the police station, look into those cases.
-3. Check the neighbourhood.
+3. Go to the asylum, ask Mr & Mrs Porter.
+4. Check the neighbourhood.
 """
 
 [[chapters]]
 id="r2-1"
 next="r3"
-max_turns=5
+max_turns=10
 backgrounds=[
     "back_door",
     "kitchen",
 ]
 rules=[
-    "If player goes inside, player can explore the first floor. The first floor has kitchen (water dripping), living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
-    "If player checks the yard, player will have a chance to get an item (a wrench, need a 'normal' 'spot hidden' skill check)",
+    "Player can get inside by a successful 'hard' 'lock_picking' skill check or a successful 'normal' 'spot_hidden' skill check (help the player find a broken window), or a 'normal' 'STR' skill check",
+    "If player successfully uses a rock to break in, the noise will attract a black dog. The black dog will come towards the player once getting inside(need a 'extreme' 'dodge' skill check). If player fails at 'dodge' skill check, player will have to fight the dog.",
+    "Once player goes inside, player can explore the first floor. The first floor has kitchen (water dripping), living room (with Macario's family photo), study (full of crucifixes and Madonnas) and bathroom (a religious sign on the mirror).",
+    "Player needs to do skill check for at least 3 times.",
+    "In this chapter, player will not game over no matter what happens.",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
 ]
 initial="""
 background: back_door
 narration: 
-Thanks to Mr.Dooley's information, you come to the house's back door. 
+Thanks to Mr.Dooley's information, you come to the house's back door. You try to open the back door, but it's locked. 
 
 choices:
-1. Go inside.
-2. Check the yard.
-3. Check the gate.
+1. Try to pick the lock.
+2. Check the windows.
+3. Search for possible keys near the gate.
+4. Throw a rock to break in.
 """
 
 [[chapters]]
@@ -257,7 +264,7 @@ rules=[
     "If player goes to find a weapon, player will find a wrench (add 'wrench' into items).",
     "There's an angry 'dog' on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill check). If player fails at 'dodge' skill check, player will have to fight the dog.",
     "If player fire the 'shotgun', 'shotgun' will be removed from the items (remove 'shotgun' from items).",
-    "After player's fight with the dog, player can explore the first floor. The first floor has living room (with family photo), study (full of crucifixes and Madonnas ) and bathroom (a religious sign on the mirror)",
+    "After player's fight with the dog, player can explore the first floor. The first floor has living room (with family photo), study (full of crucifixes and Madonnas, Mr. Walter's diary which records the rituals he's done before) and bathroom (a religious sign on the mirror)",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
     "When player rolls a CRITICAL FAILTURE during the fight, GAME_OVER.",
 ]

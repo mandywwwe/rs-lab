@@ -167,14 +167,19 @@ backgrounds=[
     "house_inside"
 ]
 rules=[
-    "Feeling confused, player can look for clues by checking the father's diary, or call the prison, or look into the cases before",
-    "Player will eventually go to the prison no matter what",
+    "Player can ask about the exact things happening in the prison, why they are calling you to help, and your reward after solving it",
+    "The caller will say inmates are missing for no reason.",
+    "Player will eventually be persuaded to take this case",
+    "Player should be required to do skill check at least twice.",
     "Chapter ends when the player decides to go to the prison.",
 ]
 initial="""
 narration: 
 {{character.backstory}}
-You've been looking for your missing father for years. Returning home on a stormy night, you find a strange envelope on the floor. It's from HMP Dartmoor Prison, Devonshire, England. The letter reads, "I know you are looking for your father's locket. If you want to find it, come to see me. — Mr. X." The shadows in the room seem to deepen as a chill runs down the investigator's spine, and questions flood their mind, tinged with a sense of foreboding and dread.
+The night was heavy with the promise of rain, a fitting prelude to the call that would shatter the uneasy peace of your evening. The phone rings, a shrill intrusion into the quiet. You answer it, and a voice, rough and strained, echoes through the static.
+
+"Is this Joe Doe?" The voice is male, with an edge of desperation that sets your nerves on edge. "My name is Warden Blackwood. I'm calling from Miskatonic Penitentiary. We need your help—strange things have been happening here, things I ... can't explain."
+
 background: house_inside
 """
 
@@ -194,7 +199,6 @@ rules=[
 ]
 initial="""
 narration: 
-{{character.backstory}}
 Arriving at the Prison, you are greeted by a 40-year-old man named Alexander. 
 background: prison_outside
 """
