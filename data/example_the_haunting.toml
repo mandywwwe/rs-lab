@@ -140,6 +140,14 @@ description="A bed flying for no reason."
 hp=10
 attack=3
 
+[[list.enemies]]
+id="a floating knife"
+name="floating_knife"
+description="a knife in the basement"
+[list.enemies.stats]
+hp=10
+attack=3
+
 [[list.backgrounds]]
 
 [character]
@@ -181,11 +189,11 @@ spot_hidden = 50
 handgun = 40
 brawl = 70  
 credit_rating = 20
-dodge = 30
+dodge = 80
 intimidate = 35
-english = 40
+Latin = 40
 listen = 40
-mechanical_repair = 30
+occult = 30
 stealth = 40
 
 [[chapters]]
@@ -227,23 +235,32 @@ choices:
 [[chapters]]
 id="r2-1"
 next="r3"
-max_turns=10
+max_turns=15
 backgrounds=[
     "back_door",
     "kitchen",
+    "living_room",
+    "study",
+    "bathroom",
 ]
 rules=[
     "Player can get inside by a successful 'hard' 'lock_picking' skill check or a successful 'normal' 'spot_hidden' skill check (help the player find a broken window), or a 'normal' 'STR' skill check",
     "If player successfully uses a rock to break in, the noise will attract a black dog. The black dog will come towards the player once getting inside(need a 'extreme' 'dodge' skill check). If player fails at 'dodge' skill check, player will have to fight the dog.",
-    "Once player goes inside, player can explore the first floor. The first floor has kitchen (water dripping), living room (with Macario's family photo), study (full of crucifixes and Madonnas) and bathroom (a religious sign on the mirror).",
-    "Player needs to do skill check for at least 3 times.",
+    "Once player goes inside, player can explore the first floor. The first floor has a living room, a study, a bathroom and a kitchen.",
+    "In the living room, player can find Macario's family photo. They smile happily, which makes you hard to imagine why a lovely kid would suddenly kill his parents.",
+    "In the bathroom, there's a mysterious sign on the mirror, three Y’s arranged in a triangle and a staring eye in the middle. The moment you see it, you start to have a headache. A successful 'hard' 'occult' skill check will make player know it's related to Immortality.",
+    "In the study, it is full of crucifixes and Madonnas. A successful 'normal' 'spot_hidden' skill check will help player find Mr. Corbitt's diary, in which records he was doing some crazy religious experiments. A successful 'normal' 'Latin' skill check helps player learn that the experiement is related to Immorality.",
+    "In the kitchen, the water is dripping, but no matter how hard the player tightens the tap, it will not stop leaking.",
+    "Player need to do skill check for at least 4 times in this chapter.",
     "In this chapter, player will not game over no matter what happens.",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
 ]
 initial="""
 background: back_door
 narration: 
-Thanks to Mr.Dooley's information, you come to the house's back door. You try to open the back door, but it's locked. 
+Thanks to Mr.Dooley's information, you come to the house's back door. As you step into the overgrown backyard, a chill prickles your skin. The air, thick with decay, is broken only by the rustle of unseen creatures. Weeds claw at your ankles as you navigate the neglected garden. Behind the house, dense shrubbery twists in agony. A half-fallen tree, its trunk split and rotting, resembles a festering wound. The sight fills you with dread.
+
+You push aside the tangled branches to reach the back door. You try to open the back door, but it's locked.
 
 choices:
 1. Try to pick the lock.
@@ -255,53 +272,96 @@ choices:
 [[chapters]]
 id="r2-0"
 next="r3"
-max_turns=5
+max_turns=15
 backgrounds=[
     "front_door",
     "first_floor",
+    "living_room",
+    "study",
+    "bathroom",
 ]
 rules=[
-    "If player goes to find a weapon, player will find a wrench (add 'wrench' into items).",
-    "There's an angry 'dog' on the first floor. As soon as player opens the front door, it will run towards you (need a 'extreme' 'dodge' skill check). If player fails at 'dodge' skill check, player will have to fight the dog.",
+    "There's an angry 'dog' on the first floor. As soon as player opens the front door, it will run towards you (need a 'normal' 'dodge' skill check). If player succeed in dodging, the black dog will run away. But if player fails at 'dodge' skill check, player will have to fight the dog.",
     "If player fire the 'shotgun', 'shotgun' will be removed from the items (remove 'shotgun' from items).",
-    "After player's fight with the dog, player can explore the first floor. The first floor has living room (with family photo), study (full of crucifixes and Madonnas, Mr. Walter's diary which records the rituals he's done before) and bathroom (a religious sign on the mirror)",
+    "If the dog dies, add a tag 'dead_dog'",
+    "After player's fight with the dog, player can explore the first floor. The first floor has a living room, a study, a bathroom and a kitchen.",
+    "In the living room, player can find Macario's family photo. They smile happily, which makes you hard to imagine why a lovely kid would suddenly kill his parents.",
+    "In the bathroom, there's a mysterious sign on the mirror, three Y’s arranged in a triangle and a staring eye in the middle. The moment you see it, you start to have a headache. A successful 'hard' 'occult' skill check will make player know it's related to Immortality.",
+    "In the study, it is full of crucifixes and Madonnas. A successful 'normal' 'spot_hidden' skill check will help player find Mr. Corbitt's diary, in which records he was doing some crazy religious experiments. A successful 'normal' 'Latin' skill check helps player learn that the experiement is related to Immorality.",
+    "In the kitchen, the water is dripping, but no matter how hard the player tightens the tap, it will not stop leaking.",
+    "Player need to do skill check for at least 4 times in this chapter.",
+    "In this chapter, player will not game over no matter what happens.",
     "Chapter ends when the player hears the door creaking sound from the second floor.",
-    "When player rolls a CRITICAL FAILTURE during the fight, GAME_OVER.",
 ]
 initial="""
 background: front_door
 narration: 
-You're standing in front of the house. In spite of your experience, you still got shivered by what you have learnt about.
+You're standing in front of the house. The brick house stands wedged between two newer, taller office buildings, swallowed by their looming shadows. The modern facades starkly contrast the old house, making it seem like a relic from a forgotten time. Its weathered, cracked bricks are covered in grime, dulling their once vibrant color.
+
+In spite of your experience, you still got shivered by what you have learnt about.
 
 choices:
 1. Go inside.
-2. Find some tool nearby as your weapon, just in case.
+2. Peak through the window.
+3. Walk around the house.
 """
 
 [[chapters]]
 id="r3"
-next=""
-max_turns=5
+next="r4"
+max_turns=10
 backgrounds=[
     "stairs",
     "kids_room",
-    "main_bedroom"
+    "main_bedroom",
+    "spare_bedroom",
 ]
 rules=[
-    "Second floor has one main bedroom, one kid's room, one bathroom",
+    "Second floor has one main bedroom, one kid's room, and one spare bedroom.",
 
-    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes (need a 'hard' 'spot hidden' skill check).",
+    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
+    "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
     "In the bathroom, there's a cult sign on the mirror. Player can do a 'normal' 'cult' skill check to get more information.",
-    "In main bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
-    "Chapter ends when the battle is finished.",
+    "In the spare bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
+    "Chapter ends when player enters the spare bedroom.",
 ]
 initial="""
 background: second_door
 narration: 
-You follow the sound to the second floor.
+You follow the sound up the old, creaky stairs, each step groaning eerily in the night. Shadows twist around you, and a clammy chill seeps into your bones. The oppressive silence amplifies the rhythmic groaning. At the top, the sound grows louder, beckoning you into the darkness with a sense of ancient dread.
 
 choices:
 1. Go to the main bedroom.
 2. Go to the kids room.
-3. Go to the bathroom.
+3. Go to the spare bedroom.
+"""
+
+[[chapters]]
+id="r4"
+next=""
+max_turns=10
+backgrounds=[
+    "stairs",
+    "kids_room",
+    "main_bedroom",
+    "spare_bedroom",
+]
+rules=[
+    "Second floor has one main bedroom, one kid's room, and one spare bedroom.",
+
+    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
+    "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
+    "In the bathroom, there's a cult sign on the mirror. Player can do a 'normal' 'cult' skill check to get more information.",
+    "In the spare bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
+    "Chapter ends when player enters the spare bedroom.",
+]
+initial="""
+background: second_door
+narration: 
+You follow the sound up the old, creaky stairs, each step groaning eerily in the night. Shadows twist around you, and a clammy chill seeps into your bones. The oppressive silence amplifies the rhythmic groaning. At the top, the sound grows louder, beckoning you into the darkness with a sense of ancient dread.
+
+choices:
+1. Go to the main bedroom.
+2. Go to the kids room.
+3. Go to the spare bedroom.
 """
