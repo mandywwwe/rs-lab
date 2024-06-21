@@ -317,23 +317,28 @@ backgrounds=[
     "spare_bedroom",
 ]
 rules=[
+    "Player will find the door creaking sound comes from the is because of a wind.",
+
     "Second floor has one main bedroom, one kid's room, and one spare bedroom.",
 
-    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
+    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing green eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
     "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
-    "In the bathroom, there's a cult sign on the mirror. Player can do a 'normal' 'cult' skill check to get more information.",
     "In the spare bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
+
+    
     "Chapter ends when player enters the spare bedroom.",
 ]
 initial="""
 background: second_door
 narration: 
-You follow the sound up the old, creaky stairs, each step groaning eerily in the night. Shadows twist around you, and a clammy chill seeps into your bones. The oppressive silence amplifies the rhythmic groaning. At the top, the sound grows louder, beckoning you into the darkness with a sense of ancient dread.
+The sound sends a shiver down your spine, echoing ominously in the stillness. Heart pounding, you follow the noise. The staircase is old and decrepit, each step groaning under your weight. The darkness is thick, and every creak sounds unnaturally loud in the oppressive gloom.
+
+As you ascend, the air grows colder, and the sensation of being watched intensifies. The faint moonlight casts ghostly patterns on the walls. At the top, a long, narrow hallway stretches before you. A door stands slightly ajar, its edges swallowed by shadow. As you approach, the door swings open slowly, revealing a dark, foreboding room beyond.
 
 choices:
 1. Go to the main bedroom.
 2. Go to the kids room.
-3. Go to the spare bedroom.
+3. .
 """
 
 [[chapters]]
@@ -347,18 +352,12 @@ backgrounds=[
     "spare_bedroom",
 ]
 rules=[
-    "Second floor has one main bedroom, one kid's room, and one spare bedroom.",
-
-    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing blue eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
-    "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
-    "In the bathroom, there's a cult sign on the mirror. Player can do a 'normal' 'cult' skill check to get more information.",
-    "In the spare bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
-    "Chapter ends when player enters the spare bedroom.",
+    "",
 ]
 initial="""
-background: second_door
+background: basement
 narration: 
-You follow the sound up the old, creaky stairs, each step groaning eerily in the night. Shadows twist around you, and a clammy chill seeps into your bones. The oppressive silence amplifies the rhythmic groaning. At the top, the sound grows louder, beckoning you into the darkness with a sense of ancient dread.
+
 
 choices:
 1. Go to the main bedroom.
