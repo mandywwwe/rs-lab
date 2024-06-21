@@ -317,16 +317,12 @@ backgrounds=[
     "spare_bedroom",
 ]
 rules=[
-    "Player will find the door creaking sound comes from the is because of a wind.",
+    "The room inside is a kid's room. In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing green eyes if player looks very hard (need a 'hard' 'spot hidden' skill check). ",
 
-    "Second floor has one main bedroom, one kid's room, and one spare bedroom.",
-
-    "In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing green eyes if player looks very hard (need a 'hard' 'spot hidden' skill check).",
+    "Second floor also has one main bedroom and one spare bedroom.",
     "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
-    "In the spare bedroom, a 'flying_bed' will fly to player and initiate a battle as soon as player enters.",    
-
-    
-    "Chapter ends when player enters the spare bedroom.",
+    "In the spare bedroom, player will find Mr. Corbitt lived this room.  Just as they begin to feel puzzled, a torrent of blood gushes from the floor or ceiling (needs a 'sanity' check). Then a'flying_bed' will fly to player and initiate a battle as soon as player enters.",  
+    "Chapter ends when player finds the basement.",
 ]
 initial="""
 background: second_door
@@ -336,9 +332,9 @@ The sound sends a shiver down your spine, echoing ominously in the stillness. He
 As you ascend, the air grows colder, and the sensation of being watched intensifies. The faint moonlight casts ghostly patterns on the walls. At the top, a long, narrow hallway stretches before you. A door stands slightly ajar, its edges swallowed by shadow. As you approach, the door swings open slowly, revealing a dark, foreboding room beyond.
 
 choices:
-1. Go to the main bedroom.
-2. Go to the kids room.
-3. .
+1. Get inside the room.
+2. Check the ajarred door. 
+3. Go to other rooms.
 """
 
 [[chapters]]
