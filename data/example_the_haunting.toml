@@ -321,7 +321,7 @@ rules=[
 
     "Second floor also has one main bedroom and one spare bedroom.",
     "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
-    "In the spare bedroom, player will find Mr. Corbitt lived this room.  Just as they begin to feel puzzled, a torrent of blood gushes from the floor or ceiling (needs a 'sanity' check). Then a'flying_bed' will fly to player and initiate a battle as soon as player enters.",  
+    "In the spare bedroom, player will find Mr. Corbitt lived this room. Just as they begin to feel puzzled, a torrent of blood gushes from the floor or ceiling (needs a 'sanity' check). Then a'flying_bed' will fly to player and initiate a battle as soon as player enters. Player will game over if player has a critical failture in this fight.",  
     "Chapter ends when player finds the basement.",
 ]
 initial="""
@@ -331,32 +331,57 @@ The sound sends a shiver down your spine, echoing ominously in the stillness. He
 
 As you ascend, the air grows colder, and the sensation of being watched intensifies. The faint moonlight casts ghostly patterns on the walls. At the top, a long, narrow hallway stretches before you. A door stands slightly ajar, its edges swallowed by shadow. As you approach, the door swings open slowly, revealing a dark, foreboding room beyond.
 
-choices:
-1. Get inside the room.
-2. Check the ajarred door. 
-3. Go to other rooms.
 """
 
 [[chapters]]
 id="r4"
-next=""
+next="r5"
 max_turns=10
 backgrounds=[
-    "stairs",
-    "kids_room",
-    "main_bedroom",
-    "spare_bedroom",
+    "basement",
 ]
 rules=[
-    "",
+    "Player will check the disturbed floor anyways.",
+    "On the disturbed floor, there's a religious sign, three Y’s arranged in a triangle and a staring eye(need a 'normal' 'spot_hidden' skill check). ",
+    "If player decides to use 'strength' skill check to dig up, they will uncover a small wooden chest, bound in iron chains. Inside the chest, they'll find a mummified hand in the basement (need a 'sanity' check). Player will find it belongs to Mr. Corbitt (need a 'hard' 'anthropology' skill check).",
+    "Player will also find an ancient dagger. The dagger itself will suddenly start to stab the player.",
+    "Player will also find Mr. Corbitt's journal, on which the ritual and how to start it is recorded. ",
+
+    "Player needs to do skill check for at least 4 times. Skills should be chosen from 'library_use', 'spot_hidden', 'occult', 'listen', 'disguise', 'stealth', 'anthropology'.",
+     
+    "Chapter ends when player sees the ghostly figure of Mr. Walter Corbitt.",
 ]
 initial="""
 background: basement
 narration: 
+The basement is a sprawling space with low ceilings supported by rotting wooden beams. The air is thick with the scent of mildew and decay. Old, forgotten furniture is scattered haphazardly, covered in dust and cobwebs. In one corner, there is a rusted furnace that looks like it hasn't been used in decades. Along one wall, shelves are lined with mason jars filled with strange, unidentifiable substances. The floor is uneven, and parts of it seem to be freshly disturbed.
 
+Your heart races as you try to decide your next move.
 
 choices:
-1. Go to the main bedroom.
-2. Go to the kids room.
-3. Go to the spare bedroom.
+1. Check the old furniture.
+2. Check the rusted furnace.
+3. Check what's inside the jars.
+4. Check the disturbed floor.
+"""
+
+[[chapters]]
+id="r5"
+next="0"
+max_turns=10
+backgrounds=[
+    "basement_floor",
+]
+rules=[
+    "A 'hard' 'sanity' check is required at the beginning.",
+    "Player can use his shotgun, his fists or Mr. Corbitt's dagger to fight, but Mr. Corbitt will only be dead when player stabs Mr.Corbitt's dagger into his heart.",
+    "Chapter ends when Mr.Walter Corbitt dies or the player dies.",
+]
+initial="""
+background: basement_floor
+narration: 
+The ghostly figure of Walter Corbitt materializes fully, his eyes glowing with a sinister light. The air grows colder, and the oppressive weight of his presence presses down on the investigators. Corbitt’s translucent form hovers menacingly, his face twisted in an eternal grimace of malevolent glee.
+
+His voice echoing in a hollow, sepulchral tone. "You dare to trespass in my domain? You will join me in eternal torment!"
+
 """
