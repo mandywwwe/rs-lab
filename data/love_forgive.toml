@@ -1,0 +1,220 @@
+# general config file for the project
+version="0.0.3"
+
+system="""
+You are not an AI Model. You are a narrator of a turn-based role-play game.
+
+GAME:
+```
+name: Does Love Forgive? 
+theme: Horror
+tonality: Psychological Horror
+```
+
+CHARACTER:
+name: {{character.name}}
+age: {{character.age}}
+occupation: {{character.occupation}}
+
+- Game is played in chapters. Each chapter has several turns.
+- On each turn, you should carefully evaluate my CHARACTER's action to determine the narration. 
+
+- Your should always follow the instructions what player whispers to you."
+
+- There are 6 types of narrations: 
+1. Basic narration:
+```
+narration: ...
+```
+2. Narration of CHOICES(ALWAYS 4 choices, without skill check):
+```
+narration: ...
+choices: 
+1. ...
+2. ...
+3. ...
+```
+3. Narration of SKILL_CHECK:
+```
+narration: ...
+skill_check: ... (spot_hidden,lock_picking, stealth, etc)
+difficulty: ... (normal, hard or exteme)
+```
+4. If player enters a BATTLE, you should provide the enemy's name like this:
+narration: ...
+battle_with: ... (enemy_name)
+5. Narration of chapter ENDING:
+```
+narration: ...
+ending: ...
+```
+6. Narration of GAME OVER:
+```
+narration: ...
+game_over: ...
+```
+
+- There are ONLY 3 types of extra information that you can provide to the player at the end of the turn: 
+- If a tag needs to be added, you should provide the tag name like this:
+```
+...
+add_tag(or remove_tag): ... (tag name using snake_case)
+```
+
+- If an item needs to be added or removed from player's inventory, you should ouput like this:
+```
+...
+add_item(or remove_item): ... (item name using snake_case)
+```
+
+- If the background image needs to be different from previous turn, you should ouput at the beginning:
+```
+background: ... (ONLY the image listed in the BACKGROUNDS)
+...
+```
+
+- ONLY add/remove items or tags that are exactly required in the RULES.
+
+- The narration should be as short as possible, if it's too long, player will lose interest.
+
+current RULES:
+{%- for rule in rules %}
+- {{ rule }}
+{%- endfor %}
+
+BACKGROUNDS:
+{%- for background in backgrounds %}
+- {{ background }}
+{%- endfor %}
+"""
+
+[[list.items]]
+name = '0.38 revolver'
+id="revolver"
+item_type = 'weapon'
+requirement ="handgun"
+description="A 0.38 revolver with 6 bullets"
+[list.items.stats]
+attack="1d10"
+
+[[list.items]]
+name = 'brawl'
+id="brawl"
+item_type = 'weapon'
+requirement ="brawl"
+description="fight with your hands"
+[list.items.stats]
+attack="1d3+DB"
+
+[[list.items]]
+name = 'lucky charm key ring'
+id="key ring"
+item_type="tool"
+description="Luck charm key ring."
+
+[[list.items]]
+name = 'a pack of cigarettes'
+id="cigarettes"
+item_type="tool"
+description="a pack of cigarettes"
+
+[[list.items]]
+name = 'a cigarette lighter'
+id="cigarette lighter"
+item_type="tool"
+description="cigarette lighter"
+
+[[list.enemies]]
+id="dog"
+name="Black Dog"
+description="A black dog with gray eyes."
+[list.enemies.stats]
+hp=5
+attack=2
+
+[[list.enemies]]
+id="flying_bed"
+name="flying_bed"
+description="A bed flying for no reason."
+[list.enemies.stats]
+hp=10
+attack=3
+
+[[list.enemies]]
+id="a floating knife"
+name="floating_knife"
+description="a knife in the basement"
+[list.enemies.stats]
+hp=10
+attack=3
+
+[[list.backgrounds]]
+
+[character]
+name="Harvey Waters"
+age = 36
+occupation="Psychologist"
+backstory="""
+"""
+items=["cigarettes","cigarette lighter","key ring"]
+
+[character.stats]
+STR = 80  
+SIZ = 50   
+CON = 70   
+DEX = 70   
+APP = 50   
+INT = 50   
+POW = 60   
+EDU = 40   
+
+HP = 12    
+MP = 12
+Luck = 50
+SAN = 60
+
+MOV = 9
+Build = 1
+DB = '+1d4'
+
+[character.skills]
+photography = 60
+disguise = 60
+law = 40
+library_use = 50
+fast_talk = 60
+psychology = 60
+spot_hidden = 50
+handgun = 40
+brawl = 70  
+credit_rating = 20
+dodge = 80
+intimidate = 35
+Latin = 40
+listen = 40
+occult = 30
+stealth = 40
+sanity = 60
+
+[[chapters]]
+id="r1"
+next="r2"
+max_turns=10
+backgrounds=[
+    "home",
+    "library",
+    "Arkham Cove",
+    "emily_bedroom",
+]
+rules=[
+    "",
+]
+initial="""
+background: home
+narration: 
+{{character.backstory}}
+
+
+choices:
+1. 
+"""
