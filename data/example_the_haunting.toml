@@ -317,12 +317,12 @@ backgrounds=[
     "spare_bedroom",
 ]
 rules=[
-    "The room inside is a kid's room. In the kid's room, player will find a drawing painted by the Macario kid. There's a monster inside with firing green eyes if player looks very hard (need a 'hard' 'spot hidden' skill check). ",
+    "The room inside is a kid's room. In the kid's room, player will find a drawing painted by the Macario kid. A successful 'hard' 'spot hidden' skill check is needed to find a monster inside with firing green eyes.",
 
     "Second floor also has one main bedroom and one spare bedroom.",
     "In the main bedroom, there's a string of rosary beads and a worn prayer book on the bedside table. Evidence shows that the Porters once lived in this bedroom. ",
     "In the spare bedroom, player will find Mr. Corbitt lived this room. Just as they begin to feel puzzled, a torrent of blood gushes from the floor or ceiling (needs a 'sanity' check). Then a'flying_bed' will fly to player and initiate a battle as soon as player enters. Player will game over if player has a critical failture in this fight.",  
-    "Chapter ends when player finds the basement.",
+    "Chapter ends when player finds the basement during escape from the flying bed.",
 ]
 initial="""
 background: second_door
@@ -348,7 +348,7 @@ rules=[
     "Player will also find Mr. Corbitt's journal, on which the ritual and how to start it is recorded. ",
 
     "Player needs to do skill check for at least 4 times. Skills should be chosen from 'library_use', 'spot_hidden', 'occult', 'listen', 'disguise', 'stealth', 'anthropology'.",
-     
+
     "Chapter ends when player sees the ghostly figure of Mr. Walter Corbitt.",
 ]
 initial="""

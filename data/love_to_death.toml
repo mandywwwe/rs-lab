@@ -210,7 +210,7 @@ rules=[
     "Yesterday, her husband took their dog Apollo to the garage. When the police arrived, Apollo couldn't stop barking, the police took the dog as he disturbed their investigation, which is weird becasue Apollo is normally very nice.",
 
     "Apollo is a golden retriever. His neck has an amulet, which was given by the woman, but the woman won't tell player more information about the amulet.",
-    "The woman comes to you because she read from newspaper before that you have some connection with the police.",
+    "The woman comes to you because she read from newspaper a case you solved before, believing in your capbility.",
 
     "After the first question, player will feel Molly is hiding something. Molly reveal that she feels being watched recently (need a 'normal' 'psychology' skill check).",
 
@@ -235,30 +235,61 @@ choices:
 """
 
 [[chapters]]
-id="r1"
-next="r2"
+id="r2"
+next="r3"
+max_turns=5
+backgrounds=[
+    "police station",
+]
+rules=[
+    "Each choice requires a 'hard' level skill check. Which skill to use is up to you.", 
+    "The player will try two ways to achieve his goal, but he will be caught by the police.",
+    "Just when the player thinks there's nothing he can do, he comes across Max, his old acquaintance. Max uses his power to help you take Apollo away.",
+
+    "Player should do skill check for at least 3 times, skills can be chosen from 'spot_hidden', 'appraise','credit_rating', 'stealth', 'track', locksmith', 'listen', 'psychology'.",
+    "Chapter ends when you come across Max, your old acquaintance.",
+]
+initial="""
+background: police station
+narration: 
+You arrive at the police station, the cold February wind biting at your face. The building looms ahead, its stone façade imposing and unwelcoming. Inside, the atmosphere is tense and bustling, officers moving about with purpose. The air smells of coffee and old paper, the typical scent of bureaucracy.
+
+You step up to the front desk where a stern-looking officer regards you with suspicion. Behind him, the station is a hive of activity, with detectives discussing cases and officers filing reports. You know you'll need to tread carefully to get any information about Apollo.
+
+choices:
+1. Pretend to be Molly's lawyer.
+2. Try to sneak into the records room.
+3. Bribe an officer for information.
+4. Ask to speak with the office in charge of the case.
+"""
+
+[[chapters]]
+id="r3"
+next="r4"
 max_turns=5
 backgrounds=[
     "home",
-    "library",
-    "Arkham Cove",
-    "emily_bedroom",
 ]
 rules=[
-    "The woman's husband is one of the victims in the shooting case. She knows her husband has some acquaintance with the gangster, but not deeply involved. However, she will reveal her husband was the main criminal of the most recent robbery in town (need a 'normal' 'spot_hidden' skill check).", 
-    
-    "Yesterday, her husband took their dog Apollo to the garage. When the police arrived, Apollo couldn't stop barking, the police took the dog as he disturbed their investigation, which is weird becasue Apollo is normally very nice.",
-
-    "Apollo is a golden retriever. His neck has an amulet, which was given by the woman, but the woman won't tell player more information about the amulet.",
-    "The woman comes to you because she read from newspaper before that you have some connection with the police.",
-
-    "After the first question, player will feel Molly is hiding something. Molly reveal that she feels being watched recently (need a 'normal' 'psychology' skill check).",
+    "Each choice requires a 'hard' level skill check. Which skill to use is up to you.", 
+    "The player will try two ways to achieve his goal, but he will be caught by the police.",
+    "Just when the player thinks there's nothing he can do, he comes across Max, his old acquaintance. Max uses his power to help you take Apollo away.",
 
     "Player should do skill check for at least 3 times, skills can be chosen from 'spot_hidden', 'appraise','credit_rating', 'stealth', 'track', locksmith', 'listen', 'psychology'.",
-    "Chapter ends when you accept the request, asking the woman to give you her silk neckband as a way to calm Apollo down.",
+    "Chapter ends when you come across Max, your old acquaintance.",
 ]
 initial="""
 background: home
 narration: 
+You arrive at the police station, the cold February wind biting at your face. The building looms ahead, its stone façade imposing and unwelcoming. Inside, the atmosphere is tense and bustling, officers moving about with purpose. The air smells of coffee and old paper, the typical scent of bureaucracy.
 
+You step up to the front desk where a stern-looking officer regards you with suspicion. Behind him, the station is a hive of activity, with detectives discussing cases and officers filing reports. You know you'll need to tread carefully to get any information about Apollo.
+
+choices:
+1. Pretend to be Molly's lawyer.
+2. Try to sneak into the records room.
+3. Bribe an officer for information.
+4. Ask to speak with the office in charge of the case.
 """
+
+
