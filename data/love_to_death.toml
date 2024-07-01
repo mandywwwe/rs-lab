@@ -156,8 +156,6 @@ age = 36
 occupation="Psychologist"
 backstory="""
 You grew up in an orphanage where you had two childhood friends, Heidi and Allen. As children, you often played puzzle-solving games together. However, you were adopted and separated from them later on. 
-
-Allen had expressed romantic feelings for you, but you turned her down, which led to jealousy towards your friendship with Heidi.
 """
 items=["cigarettes","cigarette lighter","key ring"]
 
@@ -204,21 +202,63 @@ id="r1"
 next="r2"
 max_turns=5
 backgrounds=[
+    "investigator room",
+]
+rules=[
+    "The woman's husband is one of the victims in the shooting case. She knows her husband has some acquaintance with the gangster, but not deeply involved. However, she will reveal her husband was the main criminal of the most recent robbery in town (need a 'normal' 'spot_hidden' skill check).", 
+    
+    "Yesterday, her husband took their dog Apollo to the garage. When the police arrived, Apollo couldn't stop barking, the police took the dog as he disturbed their investigation, which is weird becasue Apollo is normally very nice.",
+
+    "Apollo is a golden retriever. His neck has an amulet, which was given by the woman, but the woman won't tell player more information about the amulet.",
+    "The woman comes to you because she read from newspaper before that you have some connection with the police.",
+
+    "After the first question, player will feel Molly is hiding something. Molly reveal that she feels being watched recently (need a 'normal' 'psychology' skill check).",
+
+    "Player should do skill check for at least 3 times, skills can be chosen from 'spot_hidden', 'appraise','credit_rating', 'stealth', 'track', locksmith', 'listen', 'psychology'.",
+    "Chapter ends when you accept the request, asking the woman to give you her silk neckband as a way to calm Apollo down.",
+]
+initial="""
+background: investigator room
+narration: 
+{{character.backstory}}
+February 15th, 1929. In your dimly lit office, the morning paper's headline blares of a brutal shooting on Beverly Street. Seven members of a notorious gangster syndicate were gunned down in a grimy garage. The details are unsettlingly vague and ominous.
+
+As you contemplate the case, the office door swings open with a jarring creak. A woman bursts in, her pale face streaked with tears that glint in the dim light like dew on a spider's web. Her voice trembles with urgency. "Please," she implores, "they took Apollo... He's all I have left since Edward... Please, you have to help me bring him back."
+
+You realize she's the wife of one of the victims and consider your next move.
+
+choices:
+1. Ask her about the identity of her husband.
+2. Ask the reason why the police took Apollo.
+3. Inspect if she's telling the truth.
+4. Cautiously ask how she finds you.
+"""
+
+[[chapters]]
+id="r1"
+next="r2"
+max_turns=5
+backgrounds=[
     "home",
     "library",
     "Arkham Cove",
     "emily_bedroom",
 ]
 rules=[
-    "Chapter ends when you accept the request.",
+    "The woman's husband is one of the victims in the shooting case. She knows her husband has some acquaintance with the gangster, but not deeply involved. However, she will reveal her husband was the main criminal of the most recent robbery in town (need a 'normal' 'spot_hidden' skill check).", 
+    
+    "Yesterday, her husband took their dog Apollo to the garage. When the police arrived, Apollo couldn't stop barking, the police took the dog as he disturbed their investigation, which is weird becasue Apollo is normally very nice.",
+
+    "Apollo is a golden retriever. His neck has an amulet, which was given by the woman, but the woman won't tell player more information about the amulet.",
+    "The woman comes to you because she read from newspaper before that you have some connection with the police.",
+
+    "After the first question, player will feel Molly is hiding something. Molly reveal that she feels being watched recently (need a 'normal' 'psychology' skill check).",
+
+    "Player should do skill check for at least 3 times, skills can be chosen from 'spot_hidden', 'appraise','credit_rating', 'stealth', 'track', locksmith', 'listen', 'psychology'.",
+    "Chapter ends when you accept the request, asking the woman to give you her silk neckband as a way to calm Apollo down.",
 ]
 initial="""
 background: home
 narration: 
-{{character.backstory}}
-This is Feb 15th, 1929. In your dimly lit office, the morning paper's headline blares of a brutal shooting in the city's outskirts, its details unsettlingly vague and ominous. Yesterday, seven people were gunned down in a grimy garage on XX Road, identified as members of a notorious gangster syndicate.
 
-Just as you contemplate the unsettling case, the office door swings open with a jarring creak. A woman bursts in, her pale face streaked with tears that glint in the dim light like dew on a spider's web. Her voice trembles with urgency and a hint of something primal. "Please," she implores, "they took Max... said he's evidence. He's all I have left since Edward... Please, you have to help me bring him back." Her desperate plea fills the room, mingling with the eerie atmosphere that now clings to your office like a veil of mist from some otherworldly realm.
-
-You realize she's the wife of the victim, thinking about your reaction.
 """
